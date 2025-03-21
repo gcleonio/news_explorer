@@ -1,0 +1,34 @@
+.about__author-image {
+  width: 464px;
+  height: 464px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.about {
+  display: flex;
+  padding: 80px 190px 80px 104px;
+}
+.about__content {
+  width: 600px;
+  padding-left: 56px;
+}
+
+.about__header {
+  height: 46px;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+}
+
+.about__description {
+  height: 120px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.about__paragraph-seperator {
+  display: block;
+  height: 24px;
+}

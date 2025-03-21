@@ -5,8 +5,8 @@ const Navigation = () => {
     <nav className="nav">
       <div className="nav__logo">NewsExplorer</div>
       <ul className="nav__links">
-        <button>Home</button>
-        <button>Sign In</button>
+        <button className="nav__links_home">Home</button>
+        <button className="nav__links_signin">Sign In</button>
       </ul>
     </nav>
   );
