@@ -12,6 +12,7 @@
 .about__content {
   width: 600px;
   padding-left: 56px;
+  text-align: left;
 }
 
 .about__header {
