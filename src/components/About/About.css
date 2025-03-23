@@ -8,6 +8,7 @@
 .about {
   display: flex;
   padding: 80px 190px 80px 104px;
+  background-color: #ffffff;
 }
 .about__content {
   width: 600px;

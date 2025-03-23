@@ -1,0 +1,36 @@
+.main__header {
+  width: 712px;
+  height: 46px;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  font-family: "Roboto Slab", sans-serif;
+  text-align: left;
+  margin: 0px auto 64px 104px;
+}
+
+.main {
+  background: #f5f6f7;
+  padding-top: 80px;
+}
+
+.main__news-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0 104px;
+}
+
+.main__more-button {
+  border-radius: 80px;
+  width: 288px;
+  height: 64px;
+  color: black;
+  background-color: #e8e8e8;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  border: none;
+  margin: 60px auto 80px;
+}

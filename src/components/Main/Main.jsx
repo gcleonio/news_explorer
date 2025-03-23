@@ -1,9 +1,19 @@
 import "../Main/Main.css";
 import About from "../About/About";
+import NewsCard from "../NewsCard/NewsCard";
 
-const Main = () => {
+const Main = ({ newsArticles, isLoading }) => {
   return (
     <main className="main">
+      {/* Preloader will go here */}
+      <h3 className="main__header">Search results</h3>
+      <ul className="main__news-card-list">
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+      </ul>
+      <button className="main__more-button">Show more</button>
       <About />
     </main>
   );
