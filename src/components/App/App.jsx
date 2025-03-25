@@ -1,8 +1,10 @@
+import { useState } from "react";
+
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import "./App.css";
-import { useState } from "react";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function App() {
   const [newsArticles, setnewsArticles] = useState({});
@@ -14,6 +16,7 @@ function App() {
         <Header />
         <Main newsArticles={newsArticles} isLoading={isLoading} />
         <Footer />
+        <ModalWithForm />
       </div>
     </div>
   );
