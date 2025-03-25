@@ -4,17 +4,17 @@
   max-height: 576px;
   border-radius: 20px;
   position: relative;
-  padding: 0px;
   display: flex;
   flex-direction: column;
 }
 
 .card__image {
-  /* width: 400px; */
   max-height: 272px;
+  height: 100%;
   max-width: 100%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  object-fit: cover;
 }
 
 .card__button {
@@ -34,7 +34,7 @@
 
 .card__content {
   text-align: left;
-  padding: 0 24px;
+  padding: 0 24px 24px;
   max-width: 100%;
 }
 
@@ -94,5 +94,7 @@
   height: 20px;
   text-transform: uppercase;
   margin: 0;
-  padding-bottom: 24px;
+  padding-top: 12px;
+
+  /* padding-bottom: 24px; */
 }

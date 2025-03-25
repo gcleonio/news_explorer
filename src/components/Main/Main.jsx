@@ -7,12 +7,13 @@ const Main = ({ newsArticles, isLoading }) => {
     <main className="main">
       {/* Preloader will go here */}
       <h3 className="main__header">Search results</h3>
-      <ul className="main__news-card-list">
+      {/* <ul className="main__news-card-list">
         <NewsCard />
         <NewsCard />
         <NewsCard />
         <NewsCard />
-      </ul>
+      </ul> */}
+      <NewsCard />
       <button className="main__more-button">Show more</button>
       <About />
     </main>
