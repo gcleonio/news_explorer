@@ -1,0 +1,60 @@
+.modal__button-login {
+  width: 358px;
+  height: 64px;
+  border-radius: 100px;
+  background-color: #e6e8eb;
+  border: none;
+  color: #b6bcbf;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.modal__input {
+  width: 100%;
+  color: #000000;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 100%;
+  opacity: 20%;
+  border: none;
+  border-bottom: 1px solid #000000;
+  padding-top: 9px;
+}
+
+.modal__label {
+  color: #2f71e5;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  padding-bottom: 31px;
+}
+
+.modal__button-div {
+}
+
+.modal__botttom-button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 16px;
+}
+
+.modal__or-text {
+  font: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+}
+
+.modal__button-signup {
+  background: transparent;
+  border: none;
+  color: #2f71e5;
+  font: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+}

@@ -9,27 +9,32 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
-.modal__opened {
+.modal_opened {
+  visibility: visible;
 }
 
 .modal__content {
   background-color: white;
   position: relative;
-  padding: 34px 26px 28px 34px;
+  padding: 34px 33px 33px 34px;
   max-width: 430px;
   box-sizing: border-box;
   width: 100%;
   border-radius: 16px;
   opacity: 1;
+  text-align: left;
 }
 
 .modal__title {
   font-size: 24px;
   font-weight: 900;
   line-height: 100%;
+  color: #1a1b22;
+  margin: 0;
+  padding-bottom: 22px;
 }
 
 .modal__close {
@@ -49,7 +54,7 @@
   width: 100%;
 }
 
-.modal__submit {
+/* .modal__submit {
   width: 358px;
   height: 64px;
   border-radius: 100px;
@@ -59,4 +64,4 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-}
+} */
