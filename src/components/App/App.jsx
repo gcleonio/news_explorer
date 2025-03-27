@@ -6,11 +6,13 @@ import Footer from "../Footer/Footer";
 import "./App.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 
 function App() {
   const [newsArticles, setnewsArticles] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("register-success");
 
   const closeActiveModal = () => {
     setActiveModal("");
@@ -27,6 +29,8 @@ function App() {
         <Main newsArticles={newsArticles} isLoading={isLoading} />
         <Footer />
         <LoginModal isOpen={activeModal === "login"} />
+        <RegisterModal isOpen={activeModal === "register"} />
+        <RegisterSuccessModal isOpen={activeModal === "register-success"} />
       </div>
     </div>
   );

@@ -1,26 +1,28 @@
-import "./LoginModal.css";
+import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
 
-const LoginModal = ({ isOpen }) => {
+const RegisterModal = ({ isOpen }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     if (isOpen) {
       setEmail("");
       setPassword("");
+      setUsername("");
     }
   }, [isOpen]);
 
   return (
-    <ModalWithForm title="Sign in" buttonText="Sign in" isOpen={isOpen}>
+    <ModalWithForm title="Sign up" buttonText="Sign up" isOpen={isOpen}>
       <label className="modal__label" htmlFor="email-login">
         Email
         <input
           type="email"
           className="modal__input"
-          id="email-login"
+          id="email-register"
           name="email"
           placeholder="Enter email"
           value={email}
@@ -32,26 +34,37 @@ const LoginModal = ({ isOpen }) => {
         <input
           type="password"
           className="modal__input"
-          id="password-login"
+          id="password-register"
           placeholder="Enter password"
           value={password}
+          required
+        />
+      </label>
+      <label className="modal__label">
+        Username
+        <input
+          type="text"
+          className="modal__input"
+          id="username-register"
+          placeholder="Enter your username"
+          value={username}
           required
         />
       </label>
       <div className="modal__button-div">
         <button
           type="submit"
-          className="modal__button-login modal__button-submit"
+          className="modal__button-register modal__button-submit"
         >
-          Sign in
+          Sign up
         </button>
         <div className="modal__botttom-button-div">
           <span className="modal__or-text">or</span>
           <button
             type="button"
-            className="modal__button-register modal__button-btm"
+            className="modal__button-login modal__button-btm"
           >
-            Sign up
+            Sign in
           </button>
         </div>
       </div>
@@ -59,4 +72,4 @@ const LoginModal = ({ isOpen }) => {
   );
 };
 
-export default LoginModal;
+export default RegisterModal;

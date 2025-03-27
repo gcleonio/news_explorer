@@ -1,0 +1,10 @@
+.modal__button-register-success {
+  background: transparent;
+  border: none;
+  color: #2f71e5;
+  font: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  text-align: left;
+}

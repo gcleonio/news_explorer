@@ -1,0 +1,21 @@
+.modal__button-submit {
+  width: 358px;
+  height: 64px;
+  border-radius: 100px;
+  background-color: #e6e8eb;
+  border: none;
+  color: #b6bcbf;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.modal__button-btm {
+  background: transparent;
+  border: none;
+  color: #2f71e5;
+  font: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+}
