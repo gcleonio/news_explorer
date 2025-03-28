@@ -1,9 +1,13 @@
 import "./RegisterSuccessModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const RegisterSuccessModal = ({ isOpen }) => {
+const RegisterSuccessModal = ({ isOpen, onClose }) => {
   return (
-    <ModalWithForm title="Registration successfully completed!" isOpen={isOpen}>
+    <ModalWithForm
+      title="Registration successfully completed!"
+      isOpen={isOpen}
+      onClose={onClose}
+    >
       <button
         type="button"
         className="modal__button-login modal__button-register-success"

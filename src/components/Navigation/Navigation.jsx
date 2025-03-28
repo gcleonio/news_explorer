@@ -1,12 +1,14 @@
 import "./Navigation.css";
 
-const Navigation = () => {
+const Navigation = ({ onSignInClick }) => {
   return (
     <nav className="nav">
       <div className="nav__logo">NewsExplorer</div>
       <ul className="nav__links">
         <button className="nav__links_home">Home</button>
-        <button className="nav__links_signin">Sign In</button>
+        <button className="nav__links_signin" onClick={onSignInClick}>
+          Sign In
+        </button>
       </ul>
     </nav>
   );
