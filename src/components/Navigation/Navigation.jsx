@@ -10,6 +10,7 @@ const Navigation = ({ onSignInClick }) => {
           Sign In
         </button>
       </ul>
+      <button className="nav__menu-btn"></button>
     </nav>
   );
 };

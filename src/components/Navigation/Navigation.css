@@ -50,3 +50,40 @@
   border-radius: 100px;
   border: 1px solid white;
 }
+
+.nav__menu-btn {
+  height: 24px;
+  width: 24px;
+  display: none;
+  background-color: transparent;
+  background-image: url(../../assets/mobile-menu-not-logged-in.png);
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .nav__links_signin {
+    width: 152px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .nav__links {
+    display: none;
+  }
+
+  .nav__menu-btn {
+    display: block; /* Show the menu button on mobile */
+    cursor: pointer; /* Add cursor pointer for better UX */
+  }
+
+  .nav__logo {
+    height: 24px;
+    font-size: 16px;
+  }
+
+  .nav {
+    padding: 0px 16px;
+    justify-content: space-between;
+  }
+}

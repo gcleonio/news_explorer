@@ -7,13 +7,18 @@
 
 .about {
   display: flex;
-  padding: 80px 190px 80px 104px;
+  padding: 80px 90px 80px 104px;
   background-color: #ffffff;
+  /* flex-wrap: wrap; */
+  /* margin-bottom: 61px; */
 }
+
 .about__content {
-  width: 600px;
+  max-width: 600px;
+  width: 100%;
   padding-left: 56px;
   text-align: left;
+  /* flex-grow: 1; */
 }
 
 .about__header {
@@ -21,10 +26,12 @@
   font-weight: 400;
   font-size: 40px;
   line-height: 46px;
+  margin-bottom: 24px;
 }
 
 .about__description {
-  height: 120px;
+  /* height: 120px; */
+  height: auto;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
@@ -33,4 +40,27 @@
 .about__paragraph-seperator {
   display: block;
   height: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .about__author-image {
+    width: 232px;
+    height: 232px;
+  }
+
+  .about {
+    padding: 40px 40px 62px 40px;
+  }
+
+  .about__header {
+    font-size: 30px;
+    margin: 0;
+  }
+
+  .about__content {
+    padding-left: 32px;
+  }
+}
+
+@media screen and (max-width: 320px) {
 }
