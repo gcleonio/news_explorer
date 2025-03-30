@@ -55,4 +55,27 @@
 }
 
 @media screen and (max-width: 320px) {
+  .footer {
+    flex-direction: column-reverse;
+    /* align-items: center; */
+    margin: 22px 16px;
+  }
+
+  .footer__container-links {
+    flex-direction: column;
+  }
+
+  .footer__container {
+    justify-content: space-between;
+  }
+
+  .footer__link {
+    text-align: left;
+    padding-bottom: 15px;
+  }
+
+  .footer__copy {
+    margin: 0 auto;
+    max-width: 288px;
+  }
 }

@@ -49,4 +49,20 @@
 }
 
 @media screen and (max-width: 320px) {
+  .main__header {
+    margin: 32px 32px 58px 16px;
+  }
+
+  .main__news-card-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px;
+  }
+
+  .main__more-button {
+    margin-bottom: 24px;
+    background-color: white;
+    color: black;
+    margin-top: 16px;
+  }
 }

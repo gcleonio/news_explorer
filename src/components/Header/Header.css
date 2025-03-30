@@ -51,7 +51,19 @@
 }
 
 @media screen and (max-width: 320px) {
-  .header_container {
+  /* .header_container {
     margin: 30px 16px 32px 18px;
+  } */
+
+  .header__title {
+    margin: 30px 16px 16px;
+  }
+
+  .header__sub-title {
+    margin: 0px 16px 130px;
+  }
+
+  .header_type_home {
+    background-position: center;
   }
 }

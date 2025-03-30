@@ -19,10 +19,12 @@
   padding-left: 56px;
   text-align: left;
   /* flex-grow: 1; */
+  height: auto;
 }
 
 .about__header {
-  height: 46px;
+  /* height: 46px; */
+  height: auto;
   font-weight: 400;
   font-size: 40px;
   line-height: 46px;
@@ -42,10 +44,25 @@
   height: 24px;
 }
 
+@media screen and (min-width: 769px) and (max-width: 900px) {
+  .about__author-image {
+    width: 25vw; /* Set width as a percentage of the viewport width */
+    height: 25vw; /* Match height to width to maintain a circle */
+    max-width: 232px; /* Optional: Limit the maximum size */
+    max-height: 232px; /* Optional: Limit the maximum size */
+    border-radius: 50%; /* Ensure the image remains circular */
+    object-fit: cover;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .about__author-image {
-    width: 232px;
-    height: 232px;
+    max-width: 232px;
+    max-height: 232px;
+    /* width: 30vw;
+    height: 30vh;
+    border-radius: 50%;
+    object-fit: cover; */
   }
 
   .about {
@@ -55,6 +72,7 @@
   .about__header {
     font-size: 30px;
     margin: 0;
+    line-height: 40px;
   }
 
   .about__content {
@@ -63,4 +81,18 @@
 }
 
 @media screen and (max-width: 320px) {
+  .about {
+    flex-direction: column;
+    padding: 32px 24px;
+  }
+
+  .about__author-image {
+    max-width: 272px;
+    max-height: 272px;
+    padding-bottom: 24px;
+  }
+
+  .about__content {
+    padding-left: 0px;
+  }
 }

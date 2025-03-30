@@ -37,3 +37,30 @@
   width: 168px;
   border: none;
 }
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 320px) {
+  .search-form {
+    flex-direction: column;
+    height: auto;
+    background: none;
+    margin-bottom: 32px;
+  }
+
+  .search-form__input {
+    height: 56px;
+    width: calc(100% - 32px);
+    padding: 0;
+    margin: 0 auto 16px;
+  }
+
+  .search-form__button {
+    position: static;
+    height: 56px;
+    width: calc(100% - 32px);
+    padding: 0px;
+    margin: 0 auto;
+  }
+}

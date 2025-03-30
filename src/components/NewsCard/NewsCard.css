@@ -78,7 +78,7 @@
   font-size: 16px;
   line-height: 22px;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -134,4 +134,32 @@
 }
 
 @media screen and (max-width: 320px) {
+  .card {
+    max-width: 288px;
+  }
+
+  .card__title {
+    font-size: 22px;
+  }
+
+  .card__description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 10px;
+  }
+
+  .card__image {
+    height: 196px;
+  }
+
+  .card__pub-date {
+    padding-top: 8px;
+    padding-bottom: 10px;
+  }
 }
