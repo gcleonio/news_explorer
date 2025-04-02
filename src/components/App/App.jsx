@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -8,11 +9,18 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
+import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
+import SavedNewsMain from "../SavedNewsMain/SavedNewsMain";
 
 function App() {
   const [newsArticles, setnewsArticles] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [activeModal, setActiveModal] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
+
+  const isHomePage = location.pathname === "/";
+  const isSavedNewsPage = location.pathname === "/saved-news";
 
   const closeActiveModal = () => {
     setActiveModal("");
@@ -45,8 +53,30 @@ function App() {
   return (
     <div className="app">
       <div className="page">
-        <Header onSignInClick={handleLoginModal} />
-        <Main newsArticles={newsArticles} isLoading={isLoading} />
+        {/* <Header onSignInClick={handleLoginModal} /> */}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header
+                  onSignInClick={handleLoginModal}
+                  isLoggedIn={isLoggedIn}
+                />
+                <Main newsArticles={newsArticles} isLoading={isLoading} />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/saved-news"
+            element={
+              <>
+                <SavedNewsHeader isLoggedIn={isLoggedIn} />
+                <SavedNewsMain />
+              </>
+            }
+          ></Route>
+        </Routes>
         <Footer />
         <LoginModal
           isOpen={activeModal === "login"}

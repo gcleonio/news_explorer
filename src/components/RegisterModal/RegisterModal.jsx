@@ -7,6 +7,16 @@ const RegisterModal = ({ isOpen, onSignInClick, onClose }) => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
   useEffect(() => {
     if (isOpen) {
       setEmail("");
@@ -32,6 +42,7 @@ const RegisterModal = ({ isOpen, onSignInClick, onClose }) => {
           placeholder="Enter email"
           value={email}
           required
+          onChange={handleEmailChange}
         />
       </label>
       <label className="modal__label">
@@ -43,6 +54,7 @@ const RegisterModal = ({ isOpen, onSignInClick, onClose }) => {
           placeholder="Enter password"
           value={password}
           required
+          onChange={handlePasswordChange}
         />
       </label>
       <label className="modal__label">
@@ -54,6 +66,7 @@ const RegisterModal = ({ isOpen, onSignInClick, onClose }) => {
           placeholder="Enter your username"
           value={username}
           required
+          onChange={handleUsernameChange}
         />
       </label>
       <div className="modal__button-div">

@@ -1,10 +1,21 @@
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
+import { matchRoutes } from "react-router-dom";
 
 const LoginModal = ({ isOpen, onSignUpClick, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleEmailChange = (e) => {
+    console.log(e.target.value);
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    console.log(e.target.value);
+    setPassword(e.target.value);
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -30,6 +41,7 @@ const LoginModal = ({ isOpen, onSignUpClick, onClose }) => {
           placeholder="Enter email"
           value={email}
           required
+          onChange={handleEmailChange}
         />
       </label>
       <label className="modal__label">
@@ -41,6 +53,7 @@ const LoginModal = ({ isOpen, onSignUpClick, onClose }) => {
           placeholder="Enter password"
           value={password}
           required
+          onChange={handlePasswordChange}
         />
       </label>
       <div className="modal__button-div">

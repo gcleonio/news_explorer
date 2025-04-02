@@ -21,6 +21,8 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+  text-decoration: none;
+  color: white;
 }
 
 .nav__links {
@@ -28,18 +30,20 @@
   column-gap: 42px;
   display: flex;
   column-gap: 42px;
+  align-items: center;
 }
 
-.nav__links_home {
+.nav__link_home {
   border: none;
   background: none;
   color: white;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
+  text-decoration: none;
 }
 
-.nav__links_signin {
+.nav__link_signin-btn {
   background: none;
   color: white;
   font-weight: 500;
@@ -49,6 +53,7 @@
   height: 48px;
   border-radius: 100px;
   border: 1px solid white;
+  cursor: pointer;
 }
 
 .nav__menu-btn {
@@ -60,8 +65,60 @@
   border: none;
 }
 
+/* Styles for /saved-news */
+.nav__saved-news::after {
+  background-color: #d1d2d6;
+}
+
+.nav__logo_saved-news {
+  color: black;
+}
+
+.nav__link_home-saved-news {
+  color: black;
+}
+
+.nav__links_loggedin {
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+}
+
+.nav__link_saved-articles {
+  color: black;
+  text-decoration: none;
+  height: 24px;
+  width: 114px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.nav__link_logout-btn {
+  color: black;
+  background: none;
+  border: 1px solid #d1d2d6;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  border-radius: 100px;
+  width: 112px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.nav__logout-icon {
+  height: 16px;
+  width: 16px;
+  margin-left: 13px;
+}
+
 @media screen and (max-width: 768px) {
-  .nav__links_signin {
+  .nav__link_signin-btn {
     width: 152px;
     height: 40px;
   }

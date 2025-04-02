@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import githhubIcon from "../../assets/github.png";
 import facebookIcon from "../../assets/facebook.svg";
 import "../Footer/Footer.css";
@@ -9,7 +9,9 @@ const Footer = () => {
       <p className="footer__copy">© 2025 Supersite, Powered by News API</p>
       <div className="footer__container">
         <div className="footer__container-links">
-          <p className="footer__link">Home</p>
+          <Link to="/" className="footer__link">
+            Home
+          </Link>
           <a
             className="footer__link"
             href="https://www.linkedin.com/in/gleonio"

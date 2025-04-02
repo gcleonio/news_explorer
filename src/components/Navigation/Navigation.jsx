@@ -1,14 +1,48 @@
+import { useLocation, Link } from "react-router-dom";
 import "./Navigation.css";
+import logoutIcon from "../../assets/logout.png";
 
-const Navigation = ({ onSignInClick }) => {
+const Navigation = ({ onSignInClick, isLoggedIn }) => {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  const isSavedNewsPage = location.pathname === "/saved-news";
+
   return (
-    <nav className="nav">
-      <div className="nav__logo">NewsExplorer</div>
+    <nav className={`nav ${isSavedNewsPage ? "nav__saved-news" : ""}`}>
+      <Link
+        to="/"
+        className={`nav__logo ${isSavedNewsPage ? "nav__logo_saved-news" : ""}`}
+      >
+        NewsExplorer
+      </Link>
       <ul className="nav__links">
-        <button className="nav__links_home">Home</button>
-        <button className="nav__links_signin" onClick={onSignInClick}>
-          Sign In
-        </button>
+        <Link
+          to="/"
+          className={`nav__link_home ${
+            isSavedNewsPage ? "nav__link_home-saved-news" : ""
+          }`}
+        >
+          Home
+        </Link>
+        {!isLoggedIn && isHomePage ? (
+          <button className="nav__link_signin-btn" onClick={onSignInClick}>
+            Sign In
+          </button>
+        ) : (
+          <div className="nav__links_loggedin">
+            <Link to="/saved-news" className="nav__link_saved-articles">
+              Saved articles
+            </Link>
+            <button className="nav__link_logout-btn">
+              Elise
+              <img
+                src={logoutIcon}
+                alt="Logout Icon"
+                className="nav__logout-icon"
+              />
+            </button>
+          </div>
+        )}
       </ul>
       <button className="nav__menu-btn"></button>
     </nav>
