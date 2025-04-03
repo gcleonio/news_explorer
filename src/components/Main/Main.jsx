@@ -3,7 +3,9 @@ import About from "../About/About";
 import NewsCard from "../NewsCard/NewsCard";
 import Preloader from "../Preloader/Preloader";
 
-const Main = ({ newsArticles, isLoading }) => {
+import { articles } from "../../utils/constants";
+
+const Main = ({ articlesToShow, handleShowMore, isLoading }) => {
   return (
     <main className="main">
       {/* Preloader will go here */}
@@ -15,8 +17,12 @@ const Main = ({ newsArticles, isLoading }) => {
         <NewsCard />
         <NewsCard />
       </ul> */}
-      <NewsCard />
-      <button className="main__more-button">Show more</button>
+      <NewsCard articlesToShow={articlesToShow} articles={articles} />
+      {articlesToShow < articles.length && (
+        <button className="main__more-button" onClick={handleShowMore}>
+          Show more
+        </button>
+      )}
       <About />
     </main>
   );

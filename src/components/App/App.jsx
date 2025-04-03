@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -13,14 +13,16 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNewsMain from "../SavedNewsMain/SavedNewsMain";
 
 function App() {
-  const [newsArticles, setnewsArticles] = useState({});
+  // const [newsArticles, setnewsArticles] = useState({});
+  const [articlesToShow, setArticlesToShow] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const location = useLocation();
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const isHomePage = location.pathname === "/";
-  const isSavedNewsPage = location.pathname === "/saved-news";
+  const handleShowMore = () => {
+    setArticlesToShow((prev) => prev + 3);
+  };
 
   const closeActiveModal = () => {
     setActiveModal("");
@@ -53,7 +55,6 @@ function App() {
   return (
     <div className="app">
       <div className="page">
-        {/* <Header onSignInClick={handleLoginModal} /> */}
         <Routes>
           <Route
             path="/"
@@ -63,7 +64,11 @@ function App() {
                   onSignInClick={handleLoginModal}
                   isLoggedIn={isLoggedIn}
                 />
-                <Main newsArticles={newsArticles} isLoading={isLoading} />
+                <Main
+                  articlesToShow={articlesToShow}
+                  isLoading={isLoading}
+                  handleShowMore={handleShowMore}
+                />
               </>
             }
           ></Route>
