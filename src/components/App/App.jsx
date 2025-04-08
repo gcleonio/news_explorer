@@ -19,6 +19,9 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [savedArticles, setSavedArticles] = useState([]);
+  const [newsArticles, setNewsArticles] = useState({});
+  const [visibleArticles, setVisibleArticles] = useState(0);
 
   const handleShowMore = () => {
     setArticlesToShow((prev) => prev + 3);
