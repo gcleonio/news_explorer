@@ -16,24 +16,30 @@
 
 export const signUp = async () => {
   return new Promise((resolve, reject) => {
-    resolve({ message: "User successfully registered!" });
+    setTimeout(() => {
+      resolve({ message: "User successfully registered!" });
+    }, 500);
   });
 };
 
 export const signIn = async () => {
   return new Promise((resolve, reject) => {
-    resolve({ token: "fake-jwt-token" });
+    setTimeout(() => {
+      resolve({ token: "fake-jwt-token" });
+    }, 500);
   });
 };
 
 export const checkToken = async (token) => {
   return new Promise((resolve, reject) => {
-    resolve({
-      data: {
-        name: "John Smith",
-        email: "fake-email@example.com",
-        _id: "fake-id",
-      },
-    });
+    setTimeout(() => {
+      resolve({
+        data: {
+          name: "John Smith",
+          email: "fake-email@example.com",
+          _id: "fake-id",
+        },
+      });
+    }, 500);
   });
 };

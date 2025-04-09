@@ -1,3 +1,31 @@
+const articles = [].map((article) => ({
+  ...article,
+  _id: crypto.randomUUID(),
+}));
+
+const getArticles = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(articles);
+    }, 500);
+  });
+};
+
+const saveArticles = async ({ _id, isSaved, article, savedArticles }) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      if (isSaved) {
+        savedArticles = [...savedArticles, article];
+      } else {
+        savedArticles = savedArticles.filter((item) => item._id !== _id);
+      }
+      resolve(savedArticles);
+    }, 500);
+  });
+};
+
+export { getArticles, saveArticles };
+
 // export function getItems() {
 //   return new Promise((resolve, reject) =>
 //     resolve([
@@ -150,31 +178,3 @@
 //     });
 //   });
 // }
-
-const articles = [].map((article) => ({
-  ...article,
-  _id: crypto.randomUUID(),
-}));
-
-const getArticles = async () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(articles);
-    }, 500);
-  });
-};
-
-const saveArticles = async ({ _id, isSaved, article, savedArticles }) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      if (isSaved) {
-        savedArticles = [...savedArticles, article];
-      } else {
-        savedArticles = savedArticles.filter((item) => item._id !== _id);
-      }
-      resolve(savedArticles);
-    }, 500);
-  });
-};
-
-export { getArticles, saveArticles };

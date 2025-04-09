@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
 import { matchRoutes } from "react-router-dom";
 
-const LoginModal = ({ isOpen, onSignUpClick, onClose }) => {
+const LoginModal = ({ isOpen, onSignUpClick, onClose, handleSignIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,12 +24,19 @@ const LoginModal = ({ isOpen, onSignUpClick, onClose }) => {
     }
   }, [isOpen]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSignIn(email, password);
+    onClose();
+  };
+
   return (
     <ModalWithForm
       title="Sign in"
       // buttonText="Sign in"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
     >
       <label className="modal__label" htmlFor="email-login">
         Email

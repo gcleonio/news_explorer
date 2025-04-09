@@ -11,9 +11,10 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNewsMain from "../SavedNewsMain/SavedNewsMain";
+import { signUp, signIn, checkToken } from "../../utils/auth";
+import { getArticles, saveArticles } from "../../utils/api";
 
 function App() {
-  // const [newsArticles, setnewsArticles] = useState({});
   const [articlesToShow, setArticlesToShow] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
   const [activeModal, setActiveModal] = useState("");
@@ -22,6 +23,72 @@ function App() {
   const [savedArticles, setSavedArticles] = useState([]);
   const [newsArticles, setNewsArticles] = useState({});
   const [visibleArticles, setVisibleArticles] = useState(0);
+
+  const handleSignIn = async (email, password) => {
+    try {
+      const response = await signIn(email, password);
+      if (response.token) {
+        localStorage.setItem("token", response.token);
+        handleCheckToken();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleSignUp = async (email, password, name) => {
+    try {
+      return await signUp(email, password, name);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    localStorage.removeItem("token");
+    setSavedArticles([]);
+  };
+
+  const handleCheckToken = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await checkToken(token);
+      if (response.data) {
+        setIsLoggedIn(true);
+        const { name, email, _id } = response.data;
+        setCurrentUser({ name, email, _id });
+        fetchArticles();
+      }
+    } catch (err) {
+      console.error("Error checking token:", err);
+    }
+  };
+
+  const fetchArticles = async () => {
+    const articles = await getArticles();
+    setSavedArticles(articles);
+  };
+
+  const handleSaveArticle = async ({ _id, isSaved, article }) => {
+    try {
+      const updatedArticles = await saveArticles({
+        _id,
+        isSaved,
+        article,
+        savedArticles,
+      });
+
+      setSavedArticles(updatedArticles);
+    } catch (err) {
+      console.error("Error saving article:", err);
+    }
+  };
+
+  // Need to fix where the articles are being fetched from. And initially show no cards
 
   const handleShowMore = () => {
     setArticlesToShow((prev) => prev + 3);
@@ -90,11 +157,13 @@ function App() {
           isOpen={activeModal === "login"}
           onSignUpClick={handleRegisterModal}
           onClose={closeActiveModal}
+          handleSignIn={handleSignIn}
         />
         <RegisterModal
           isOpen={activeModal === "register"}
           onSignInClick={handleLoginModal}
           onClose={closeActiveModal}
+          handleSignUp={handleSignUp}
         />
         <RegisterSuccessModal
           isOpen={activeModal === "register-success"}
