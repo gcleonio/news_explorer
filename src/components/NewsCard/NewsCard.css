@@ -9,6 +9,17 @@
   flex-direction: column;
 }
 
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0 104px 60px;
+}
+
+.card-list--hidden {
+  display: none;
+}
+
 .card__image {
   max-height: 272px;
   height: 100%;
@@ -131,6 +142,10 @@
   .card__description {
     -webkit-line-clamp: 4;
   }
+
+  .card-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -161,5 +176,11 @@
   .card__pub-date {
     padding-top: 8px;
     padding-bottom: 10px;
+  }
+
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px;
   }
 }

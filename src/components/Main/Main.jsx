@@ -15,7 +15,7 @@ const Main = ({
   error,
 }) => {
   return (
-    <main className="main">
+    <main className={`${hasSearched ? "main" : ""}`}>
       {isLoading && <Preloader />}
       {hasSearched && newsArticleResults.length === 0 && error === null && (
         <div className="main__noresult">

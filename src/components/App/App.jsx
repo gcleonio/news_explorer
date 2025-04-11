@@ -19,7 +19,7 @@ function App() {
   const [articlesToShow, setArticlesToShow] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [activeModal, setActiveModal] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
   const [newsArticleResults, setNewsArticleResults] = useState([]);
@@ -90,8 +90,6 @@ function App() {
       console.error("Error saving article:", err);
     }
   };
-
-  // Need to fix where the articles are being fetched from. And initially show no cards
 
   const handleSearch = async (keyword) => {
     setIsLoading(true);
@@ -182,7 +180,10 @@ function App() {
             element={
               <>
                 <SavedNewsHeader isLoggedIn={isLoggedIn} />
-                <SavedNewsMain />
+                <SavedNewsMain
+                  articlesToShow={articlesToShow}
+                  newsArticleResults={newsArticleResults}
+                />
               </>
             }
           ></Route>

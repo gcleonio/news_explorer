@@ -95,6 +95,10 @@
   white-space: nowrap;
 }
 
+.nav__link_saved-articles_home {
+  color: white;
+}
+
 .nav__link_logout-btn {
   color: black;
   background: none;
@@ -109,6 +113,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.nav__link_logout-btn_home {
+  color: white;
+  border: 1px solid white;
 }
 
 .nav__logout-icon {

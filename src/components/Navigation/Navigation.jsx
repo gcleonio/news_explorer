@@ -1,6 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import "./Navigation.css";
 import logoutIcon from "../../assets/logout.png";
+import logoutIconHome from "../../assets/logout-homepage.png";
 
 const Navigation = ({ onSignInClick, isLoggedIn }) => {
   const location = useLocation();
@@ -30,13 +31,22 @@ const Navigation = ({ onSignInClick, isLoggedIn }) => {
           </button>
         ) : (
           <div className="nav__links_loggedin">
-            <Link to="/saved-news" className="nav__link_saved-articles">
+            <Link
+              to="/saved-news"
+              className={`nav__link_saved-articles ${
+                isLoggedIn && isHomePage ? "nav__link_saved-articles_home" : ""
+              }`}
+            >
               Saved articles
             </Link>
-            <button className="nav__link_logout-btn">
+            <button
+              className={`nav__link_logout-btn ${
+                isHomePage && isLoggedIn ? "nav__link_logout-btn_home" : ""
+              }`}
+            >
               Elise
               <img
-                src={logoutIcon}
+                src={isLoggedIn && isHomePage ? logoutIconHome : logoutIcon}
                 alt="Logout Icon"
                 className="nav__logout-icon"
               />

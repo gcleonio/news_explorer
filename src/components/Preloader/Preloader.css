@@ -22,8 +22,8 @@
   right: 0;
   bottom: 0;
   margin: auto;
-  animation: spin 0.75s infinite linear; */
-} 
+  animation: spin 0.75s infinite linear;
+}
 
 /* .preloader__noresult-image {
   height: 82.5px;
@@ -50,7 +50,6 @@
   word-wrap: break-word;
   margin: 0 auto;
 } */
-
 
 @keyframes spin {
   100% {

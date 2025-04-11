@@ -1,10 +1,13 @@
 import NewsCard from "../NewsCard/NewsCard";
 import "./SavedNewsMain.css";
 
-const SavedNewsMain = () => {
+const SavedNewsMain = ({ articlesToShow, newsArticleResults }) => {
   return (
     <main className="saved-main">
-      <NewsCard />
+      <NewsCard
+        articlesToShow={articlesToShow}
+        newsArticleResults={newsArticleResults}
+      />
     </main>
   );
 };
