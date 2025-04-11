@@ -2,10 +2,10 @@
 import "./NewsCard.css";
 import defaultImage from "../../assets/default-image.png";
 
-const NewsCard = ({ articlesToShow, articles }) => {
+const NewsCard = ({ articlesToShow, articles, newsArticleResults }) => {
   return (
     <ul className="main__news-card-list">
-      {articles.slice(0, articlesToShow).map((article, index) => (
+      {newsArticleResults.slice(0, articlesToShow).map((article, index) => (
         <li className="card" key={index}>
           <img
             src={article.urlToImage || defaultImage}

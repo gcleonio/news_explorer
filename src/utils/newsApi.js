@@ -53,4 +53,4 @@ const getNews = async (keyword) => {
   }
 };
 
-export default getNews;
+export { getNews };

@@ -3,7 +3,7 @@ import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
 import "./Header.css";
 
-const Header = ({ onSignInClick, isLoggedIn }) => {
+const Header = ({ onSignInClick, isLoggedIn, handleSearch }) => {
   return (
     <header className="header header_type_home">
       <Navigation onSignInClick={onSignInClick} isLoggedIn={isLoggedIn} />
@@ -13,7 +13,7 @@ const Header = ({ onSignInClick, isLoggedIn }) => {
           Find the latest news on any topic and save them in your personal
           account.
         </p>
-        <SearchForm />
+        <SearchForm handleSearch={handleSearch} />
       </div>
     </header>
   );

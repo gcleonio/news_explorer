@@ -1,12 +1,12 @@
 import "./Preloader.css";
-import notFoundImage from "../../assets/not-found.png";
+// import notFoundImage from "../../assets/not-found.png";
 
 const Preloader = () => {
   return (
     <div className="preloader">
       <div className="circle-preloader"></div>
       <p className="preloader__text">Searching for news...</p>
-      <div className="preloader__noresult">
+      {/* <div className="preloader__noresult">
         <img
           src={notFoundImage}
           alt="Nothing found"
@@ -16,7 +16,7 @@ const Preloader = () => {
         <p className="preloader__noresult-text">
           Sorry, but nothing matched your search terms.
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

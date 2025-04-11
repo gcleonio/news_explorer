@@ -13,16 +13,19 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNewsMain from "../SavedNewsMain/SavedNewsMain";
 import { signUp, signIn, checkToken } from "../../utils/auth";
 import { getArticles, saveArticles } from "../../utils/api";
+import { getNews } from "../../utils/newsApi";
 
 function App() {
-  const [articlesToShow, setArticlesToShow] = useState(3);
+  const [articlesToShow, setArticlesToShow] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
-  const [newsArticles, setNewsArticles] = useState({});
-  const [visibleArticles, setVisibleArticles] = useState(0);
+  const [newsArticleResults, setNewsArticleResults] = useState([]);
+  // const [visibleArticles, setVisibleArticles] = useState(0);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSignIn = async (email, password) => {
     try {
@@ -90,6 +93,34 @@ function App() {
 
   // Need to fix where the articles are being fetched from. And initially show no cards
 
+  const handleSearch = async (keyword) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const articleData = await getNews(keyword);
+
+      const processedArticles = articleData.map((article) => ({
+        _id: crypto.randomUUID(),
+        isSaved: false,
+        ...article,
+        keyword,
+      }));
+
+      if (!hasSearched) {
+        setHasSearched(true);
+      }
+
+      setNewsArticleResults(processedArticles);
+      setArticlesToShow(3);
+    } catch (err) {
+      setError("An error occured during the response");
+      console.error("Error fetching articles:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleShowMore = () => {
     setArticlesToShow((prev) => prev + 3);
   };
@@ -133,11 +164,15 @@ function App() {
                 <Header
                   onSignInClick={handleLoginModal}
                   isLoggedIn={isLoggedIn}
+                  handleSearch={handleSearch}
                 />
                 <Main
                   articlesToShow={articlesToShow}
                   isLoading={isLoading}
                   handleShowMore={handleShowMore}
+                  newsArticleResults={newsArticleResults}
+                  hasSearched={hasSearched}
+                  error={error}
                 />
               </>
             }
