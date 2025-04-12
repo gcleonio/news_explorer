@@ -13,6 +13,8 @@ const Main = ({
   newsArticleResults,
   hasSearched,
   error,
+  handleSaveArticle,
+  isLoggedIn,
 }) => {
   return (
     <main className={`${hasSearched ? "main" : ""}`}>
@@ -46,6 +48,8 @@ const Main = ({
         articlesToShow={articlesToShow}
         // articles={articles}
         newsArticleResults={newsArticleResults}
+        handleSaveArticle={handleSaveArticle}
+        isLoggedIn={isLoggedIn}
       />
       {articlesToShow < newsArticleResults.length && (
         <button className="main__more-button" onClick={handleShowMore}>

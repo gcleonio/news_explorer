@@ -14,6 +14,7 @@ import SavedNewsMain from "../SavedNewsMain/SavedNewsMain";
 import { signUp, signIn, checkToken } from "../../utils/auth";
 import { getArticles, saveArticles } from "../../utils/api";
 import { getNews } from "../../utils/newsApi";
+// import { Outlet } from "react-router-dom";
 
 function App() {
   const [articlesToShow, setArticlesToShow] = useState(0);
@@ -39,9 +40,9 @@ function App() {
     }
   };
 
-  const handleSignUp = async (email, password, name) => {
+  const handleSignUp = async (email, password, username) => {
     try {
-      return await signUp(email, password, name);
+      return await signUp(email, password, username);
     } catch (err) {
       console.error(err);
     }
@@ -62,8 +63,8 @@ function App() {
       const response = await checkToken(token);
       if (response.data) {
         setIsLoggedIn(true);
-        const { name, email, _id } = response.data;
-        setCurrentUser({ name, email, _id });
+        const { username, email, _id } = response.data;
+        setCurrentUser({ username, email, _id });
         fetchArticles();
       }
     } catch (err) {
@@ -171,6 +172,8 @@ function App() {
                   newsArticleResults={newsArticleResults}
                   hasSearched={hasSearched}
                   error={error}
+                  handleSaveArticle={handleSaveArticle}
+                  isLoggedIn={isLoggedIn}
                 />
               </>
             }
@@ -179,10 +182,15 @@ function App() {
             path="/saved-news"
             element={
               <>
-                <SavedNewsHeader isLoggedIn={isLoggedIn} />
+                <SavedNewsHeader
+                  isLoggedIn={isLoggedIn}
+                  savedArticles={savedArticles}
+                />
                 <SavedNewsMain
                   articlesToShow={articlesToShow}
                   newsArticleResults={newsArticleResults}
+                  savedArticles={savedArticles}
+                  handleSaveArticle={handleSaveArticle}
                 />
               </>
             }

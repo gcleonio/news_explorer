@@ -1,8 +1,50 @@
 // import { articles } from "../../utils/constants";
 import "./NewsCard.css";
 import defaultImage from "../../assets/default-image.png";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
-const NewsCard = ({ articlesToShow, articles, newsArticleResults }) => {
+const NewsCard = ({
+  articlesToShow,
+  newsArticleResults,
+  handleSaveArticle,
+  isLoggedIn,
+  handleRemoveArticle,
+}) => {
+  const location = useLocation();
+  // const [marked, setIsMarked] = useState(false);
+  const [markedCards, setMarkedCards] = useState({});
+
+  const handlePrepareSaveArticle = (article) => {
+    if (!isLoggedIn) return;
+
+    // const updateMarked = !marked;
+    // setIsMarked(updateMarked);
+
+    const updatedMarked = !markedCards[article._id];
+    setMarkedCards((prev) => ({
+      ...prev,
+      [article._id]: updatedMarked,
+    }));
+
+    const updateArticle = {
+      _id: article._id,
+      isSaved: updatedMarked,
+      title: article.title,
+      urlToImage: article.urlToImage,
+      keyword: article.keyword,
+      description: article.description,
+      publishedAt: article.publishedAt,
+      source: { name: article.source.name },
+    };
+
+    handleSaveArticle(updateArticle);
+  };
+
+  const handleRemove = () => {
+    handleRemoveArticle(_id);
+  };
+
   return (
     <ul
       className={`card-list ${articlesToShow === 0 ? "card-list--hidden" : ""}`}
@@ -18,7 +60,31 @@ const NewsCard = ({ articlesToShow, articles, newsArticleResults }) => {
               e.target.src = defaultImage; // fallback to default image
             }}
           />
-          <button type="button" className="card__button"></button>
+          {!isLoggedIn && location.pathname === "/" && (
+            <button type="button" className="card__button">
+              <span className="card__button-hover-text">
+                Sign in to save articles
+              </span>
+            </button>
+          )}
+          {isLoggedIn && location.pathname === "/" && (
+            <button
+              type="button"
+              className={
+                markedCards[article._id]
+                  ? "card__button-marked"
+                  : "card__button-loggedin"
+              }
+              onClick={() => handlePrepareSaveArticle(article)}
+            ></button>
+          )}
+          {isLoggedIn && location.pathname === "/saved-news" && (
+            <button
+              type="button"
+              className="card__button-trash"
+              onClick={handleRemove}
+            ></button>
+          )}
           <div className="card__content">
             <p className="card__pub-date">{article.publishedAt}</p>
             <h3 className="card__title">{article.title}</h3>

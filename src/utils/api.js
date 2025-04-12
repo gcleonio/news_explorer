@@ -17,7 +17,7 @@ const saveArticles = async ({ _id, isSaved, article, savedArticles }) => {
       if (isSaved) {
         savedArticles = [...savedArticles, article];
       } else {
-        savedArticles = savedArticles.filter((item) => item._id !== _id);
+        savedArticles = savedArticles.filter((item) => item?._id !== _id);
       }
       resolve(savedArticles);
     }, 500);

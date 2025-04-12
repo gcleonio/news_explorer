@@ -19,7 +19,7 @@ export const checkToken = async (token) => {
     setTimeout(() => {
       resolve({
         data: {
-          name: "John Smith",
+          username: "JamesBond",
           email: "fake-email@example.com",
           _id: "fake-id",
         },
