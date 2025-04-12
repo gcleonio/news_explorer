@@ -102,7 +102,7 @@
   background-color: white;
 }
 
-.card__button-trash :hover {
+.card__button-trash:hover {
   background-image: url(../../assets/trash-hover.png);
 }
 

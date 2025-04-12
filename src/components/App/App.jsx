@@ -92,6 +92,14 @@ function App() {
     }
   };
 
+  // const handleSaveArticle = ({ _id, isSaved, article }) => {
+  //   if (isSaved) {
+  //     setSavedArticles((prev) => [...prev, article]);
+  //   } else {
+  //     setSavedArticles((prev) => prev.filter((item) => item?._id !== _id));
+  //   }
+  // };
+
   const handleSearch = async (keyword) => {
     setIsLoading(true);
     setError(null);
@@ -191,6 +199,7 @@ function App() {
                   newsArticleResults={newsArticleResults}
                   savedArticles={savedArticles}
                   handleSaveArticle={handleSaveArticle}
+                  isLoggedIn={isLoggedIn}
                 />
               </>
             }

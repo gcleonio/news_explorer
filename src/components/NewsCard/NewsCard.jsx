@@ -10,10 +10,16 @@ const NewsCard = ({
   handleSaveArticle,
   isLoggedIn,
   handleRemoveArticle,
+  savedArticles = [],
 }) => {
   const location = useLocation();
+  const isSavedNewsPage = location.pathname === "/saved-news";
   // const [marked, setIsMarked] = useState(false);
   const [markedCards, setMarkedCards] = useState({});
+
+  const articlesToRender = isSavedNewsPage
+    ? savedArticles
+    : newsArticleResults.slice(0, articlesToShow);
 
   const handlePrepareSaveArticle = (article) => {
     if (!isLoggedIn) return;
@@ -41,18 +47,20 @@ const NewsCard = ({
     handleSaveArticle(updateArticle);
   };
 
-  const handleRemove = () => {
-    handleRemoveArticle(_id);
-  };
+  // const handleRemove = () => {
+  //   handleRemoveArticle(_id);
+  // };
 
   return (
     <ul
-      className={`card-list ${articlesToShow === 0 ? "card-list--hidden" : ""}`}
+      className={`card-list ${
+        articlesToRender.length === 0 ? "card-list--hidden" : ""
+      }`}
     >
-      {newsArticleResults.slice(0, articlesToShow).map((article, index) => (
+      {articlesToRender.map((article, index) => (
         <li className="card" key={index}>
           <img
-            src={article.urlToImage || defaultImage}
+            src={article?.urlToImage || defaultImage}
             alt="card image"
             className="card__image"
             onError={(e) => {
@@ -82,14 +90,14 @@ const NewsCard = ({
             <button
               type="button"
               className="card__button-trash"
-              onClick={handleRemove}
+              onClick={() => handleRemoveArticle(article?._id)}
             ></button>
           )}
           <div className="card__content">
-            <p className="card__pub-date">{article.publishedAt}</p>
-            <h3 className="card__title">{article.title}</h3>
-            <p className="card__description">{article.description}</p>
-            <p className="card__source">{article.source.name}</p>
+            <p className="card__pub-date">{article?.publishedAt}</p>
+            <h3 className="card__title">{article?.title}</h3>
+            <p className="card__description">{article?.description}</p>
+            <p className="card__source">{article?.source?.name}</p>
           </div>
         </li>
       ))}
