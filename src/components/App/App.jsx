@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -28,6 +28,10 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    console.log("Current User:", currentUser);
+  }, [currentUser]);
+
   const handleSignIn = async (email, password) => {
     try {
       const response = await signIn(email, password);
@@ -48,11 +52,14 @@ function App() {
     }
   };
 
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentUser(null);
     localStorage.removeItem("token");
     setSavedArticles([]);
+    navigate("/");
   };
 
   const handleCheckToken = async () => {
@@ -170,6 +177,8 @@ function App() {
                   onSignInClick={handleLoginModal}
                   isLoggedIn={isLoggedIn}
                   handleSearch={handleSearch}
+                  currentUser={currentUser}
+                  handleLogout={handleLogout}
                 />
                 <Main
                   articlesToShow={articlesToShow}
@@ -191,6 +200,8 @@ function App() {
                 <SavedNewsHeader
                   isLoggedIn={isLoggedIn}
                   savedArticles={savedArticles}
+                  currentUser={currentUser}
+                  handleLogout={handleLogout}
                 />
                 <SavedNewsMain
                   articlesToShow={articlesToShow}

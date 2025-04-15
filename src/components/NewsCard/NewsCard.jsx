@@ -87,11 +87,14 @@ const NewsCard = ({
             ></button>
           )}
           {isLoggedIn && location.pathname === "/saved-news" && (
-            <button
-              type="button"
-              className="card__button-trash"
-              onClick={() => handleRemoveArticle(article?._id)}
-            ></button>
+            <>
+              <span className="card__keyword">{article.keyword}</span>
+              <button
+                type="button"
+                className="card__button-trash"
+                onClick={() => handleRemoveArticle(article?._id)}
+              ></button>
+            </>
           )}
           <div className="card__content">
             <p className="card__pub-date">{article?.publishedAt}</p>

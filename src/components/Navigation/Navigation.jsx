@@ -3,7 +3,12 @@ import "./Navigation.css";
 import logoutIcon from "../../assets/logout.png";
 import logoutIconHome from "../../assets/logout-homepage.png";
 
-const Navigation = ({ onSignInClick, isLoggedIn }) => {
+const Navigation = ({
+  onSignInClick,
+  isLoggedIn,
+  currentUser,
+  handleLogout,
+}) => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const isSavedNewsPage = location.pathname === "/saved-news";
@@ -40,11 +45,12 @@ const Navigation = ({ onSignInClick, isLoggedIn }) => {
               Saved articles
             </Link>
             <button
+              onClick={handleLogout}
               className={`nav__link_logout-btn ${
                 isHomePage && isLoggedIn ? "nav__link_logout-btn_home" : ""
               }`}
             >
-              Elise
+              {currentUser || "User"}
               <img
                 src={isLoggedIn && isHomePage ? logoutIconHome : logoutIcon}
                 alt="Logout Icon"
