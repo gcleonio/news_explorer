@@ -77,11 +77,9 @@ function App() {
     setSavedArticles(articles);
   };
 
-  const handleSaveArticle = async ({ _id, isSaved, article }) => {
+  const handleSaveArticle = async (article) => {
     try {
       const updatedArticles = await saveArticles({
-        _id,
-        isSaved,
         article,
         savedArticles,
       });

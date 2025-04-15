@@ -1,7 +1,7 @@
-const articles = [].map((article) => ({
-  ...article,
-  _id: crypto.randomUUID(),
-}));
+// const articles = [].map((article) => ({
+//   ...article,
+//   _id: crypto.randomUUID(),
+// }));
 
 const getArticles = async () => {
   return new Promise((resolve) => {
@@ -11,11 +11,14 @@ const getArticles = async () => {
   });
 };
 
-const saveArticles = async ({ _id, isSaved, article, savedArticles }) => {
+const saveArticles = async ({ _id, article, savedArticles }) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      if (isSaved) {
-        savedArticles = [...savedArticles, article];
+      if (article.isSaved) {
+        // create a random ID
+        const articleWithId = { ...article, _id: crypto.randomUUID() };
+        // add _id property to article
+        savedArticles = [...savedArticles, articleWithId];
       } else {
         savedArticles = savedArticles?.filter((item) => item?._id !== _id);
       }
