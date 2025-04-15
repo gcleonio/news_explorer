@@ -93,7 +93,9 @@ const NewsCard = ({
                 type="button"
                 className="card__button-trash"
                 onClick={() => handleRemoveArticle(article?._id)}
-              ></button>
+              >
+                <span className="card__button-remove-text">Delete</span>
+              </button>
             </>
           )}
           <div className="card__content">
