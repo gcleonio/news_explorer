@@ -11,7 +11,7 @@ const getArticles = async () => {
   });
 };
 
-const saveArticles = async ({ _id, article, savedArticles }) => {
+const saveArticles = async ({ article, savedArticles }) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       if (article.isSaved) {
@@ -20,7 +20,9 @@ const saveArticles = async ({ _id, article, savedArticles }) => {
         // add _id property to article
         savedArticles = [...savedArticles, articleWithId];
       } else {
-        savedArticles = savedArticles?.filter((item) => item?._id !== _id);
+        savedArticles = savedArticles?.filter(
+          (item) => item?._id !== article._id
+        );
       }
       resolve(savedArticles);
     }, 500);

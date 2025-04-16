@@ -15,18 +15,8 @@ const SavedNewsMain = ({
       return;
     }
 
-    // if (!Array.isArray(savedArticles)) {
-    //   console.error("Error: savedArticles is not an array");
-    //   return;
-    // }
-
-    // const updatedArticles = savedArticles.filter(
-    //   (article) => article?._id !== _id // use optional chaining to avoid errors
-    // );
-
     console.log("Removing article with _id:", _id);
 
-    // Call handleSaveArticle to update the saved articles
     handleSaveArticle({
       _id,
       isSaved: false,

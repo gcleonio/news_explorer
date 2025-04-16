@@ -24,9 +24,6 @@ const NewsCard = ({
   const handlePrepareSaveArticle = (article) => {
     if (!isLoggedIn) return;
 
-    // const updateMarked = !marked;
-    // setIsMarked(updateMarked);
-
     const updatedMarked = !markedCards[article._id];
     setMarkedCards((prev) => ({
       ...prev,
@@ -92,7 +89,10 @@ const NewsCard = ({
               <button
                 type="button"
                 className="card__button-trash"
-                onClick={() => handleRemoveArticle(article?._id)}
+                onClick={() => {
+                  console.log("Removing article with _id", article?._id);
+                  handleRemoveArticle(article?._id);
+                }}
               >
                 <span className="card__button-remove-text">Delete</span>
               </button>
