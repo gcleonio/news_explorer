@@ -111,8 +111,9 @@ function App() {
 
     try {
       const articleData = await getNews(keyword);
+      console.log("Article Data:", articleData);
 
-      const processedArticles = articleData.map((article) => ({
+      const processedArticles = (articleData || []).map((article) => ({
         _id: crypto.randomUUID(),
         isSaved: false,
         ...article,

@@ -1,4 +1,5 @@
 @import url("./vendor/fonts/fonts.css");
+@import url("./vendor/normalize.css");
 
 #root {
   padding: 0px;

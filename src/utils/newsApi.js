@@ -46,10 +46,12 @@ const getNews = async (keyword) => {
 
   try {
     const articleObject = await request(url);
+    console.log("API Response:", articleObject);
     const articles = parseNewsData(articleObject);
-    return articles;
+    return articles || [];
   } catch (err) {
     console.log("Error fetching news:", err);
+    return [];
   }
 };
 

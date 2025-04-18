@@ -41,6 +41,20 @@
   font-size: 18px;
   line-height: 24px;
   text-decoration: none;
+  position: relative;
+}
+
+.nav__link_home::after {
+  content: "";
+  position: absolute;
+  bottom: -28px; /* Adjust to overlap .nav::after */
+  left: 0;
+  width: 150%;
+  height: 3px; /* Thickness of the line */
+  background-color: white; /* Color of the line */
+  z-index: 2; /* Ensure it appears above .nav::after */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav__link_signin-btn {
@@ -78,6 +92,10 @@
   color: black;
 }
 
+.nav__link_home-saved-news::after {
+  display: none;
+}
+
 .nav__links_loggedin {
   display: flex;
   align-items: center;
@@ -93,10 +111,28 @@
   font-size: 18px;
   line-height: 24px;
   white-space: nowrap;
+  position: relative;
+}
+
+.nav__link_saved-articles::after {
+  content: "";
+  position: absolute;
+  bottom: -28px;
+  left: 0;
+  width: 125%;
+  height: 3px;
+  background-color: #1a1b22;
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav__link_saved-articles_home {
   color: white;
+}
+
+.nav__link_saved-articles_home::after {
+  display: none;
 }
 
 .nav__link_logout-btn {
@@ -139,8 +175,8 @@
   }
 
   .nav__menu-btn {
-    display: block; /* Show the menu button on mobile */
-    cursor: pointer; /* Add cursor pointer for better UX */
+    display: block;
+    cursor: pointer;
   }
 
   .nav__logo {
