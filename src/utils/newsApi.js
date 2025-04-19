@@ -36,7 +36,7 @@ const getToday = () => {
 };
 
 const parseNewsData = (newsData) => {
-  return newsData["articles"];
+  return newsData["articles"] || [];
 };
 
 const getNews = async (keyword) => {
@@ -45,7 +45,6 @@ const getNews = async (keyword) => {
   )}&apiKey=${apiKey}&from=${get7DaysAgo()}&to=${getToday()}&pageSize=100`;
 
   try {
-    console.log("API Key:", apiKey);
     const articleObject = await request(url);
     console.log("API Response:", articleObject);
     const articles = parseNewsData(articleObject);

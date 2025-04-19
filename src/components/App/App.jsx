@@ -92,6 +92,7 @@ function App() {
       });
 
       setSavedArticles(updatedArticles);
+      localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
     } catch (err) {
       console.error("Error saving article:", err);
     }

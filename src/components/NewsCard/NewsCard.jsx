@@ -99,7 +99,13 @@ const NewsCard = ({
             </>
           )}
           <div className="card__content">
-            <p className="card__pub-date">{article?.publishedAt}</p>
+            <p className="card__pub-date">
+              {new Date(article?.publishedAt).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
             <h3 className="card__title">{article?.title}</h3>
             <p className="card__description">{article?.description}</p>
             <p className="card__source">{article?.source?.name}</p>
