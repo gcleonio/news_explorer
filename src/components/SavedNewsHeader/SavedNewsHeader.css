@@ -10,6 +10,7 @@
   padding: 40px 104px 80px;
   max-width: 712px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .header__saved-news-topline {
@@ -33,4 +34,11 @@
   font-weight: 400;
   line-height: 24px;
   margin: 0;
+}
+
+@media screen and (max-width: 925px) {
+  .header__saved-news-container {
+    max-width: 80%;
+    padding: 40px calc(10%) 60px;
+  }
 }

@@ -80,7 +80,16 @@
 }
 
 /* Styles for /saved-news */
-.nav__saved-news::after {
+.nav__menu-btn-saved-news {
+  background-image: url(../../assets/mobile-menu-loggedin.svg);
+  display: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+}
+
+.nav_saved-news::after {
   background-color: #d1d2d6;
 }
 
@@ -166,6 +175,35 @@
   .nav__link_signin-btn {
     width: 152px;
     height: 40px;
+  }
+
+  .nav__link_logout-btn {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav__link_logout-btn,
+  .nav__link_logout-btn_home {
+    display: none;
+  }
+
+  .nav__menu-btn {
+    display: block;
+    cursor: pointer;
+  }
+
+  .nav__links {
+    display: none;
+  }
+
+  .nav {
+    padding: 0 50px;
+  }
+
+  .nav__menu-btn-saved-news {
+    display: block;
+    cursor: pointer;
   }
 }
 

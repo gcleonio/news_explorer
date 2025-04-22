@@ -15,6 +15,8 @@ const Footer = () => {
           <a
             className="footer__link"
             href="https://www.linkedin.com/in/gleonio"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             G. Leonio
           </a>
@@ -23,10 +25,17 @@ const Footer = () => {
           <a
             className="footer__icon-link"
             href="https://github.com/gcleonio/news_explorer"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <img src={githhubIcon} alt="github link"></img>
           </a>
-          <a className="footer__icon-link" href="https://www.facebook.com/">
+          <a
+            className="footer__icon-link"
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={facebookIcon} alt="facebook"></img>
           </a>
         </div>

@@ -22,6 +22,22 @@
   border: none;
   border-bottom: 1px solid #000000;
   padding-top: 9px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal__input:focus {
+  border-bottom: 2px solid #2f71e5;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(47, 113, 229, 0.3);
+}
+
+.modal__input::placeholder {
+  color: #b6bcbf;
+  transition: color 0.3s ease;
+}
+
+.modal__input:focus::placeholder {
+  color: black;
 }
 
 .modal__label {
@@ -68,4 +84,12 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
+}
+
+.modal__button-login {
+  cursor: pointer;
+}
+
+.modal__button-register {
+  cursor: pointer;
 }

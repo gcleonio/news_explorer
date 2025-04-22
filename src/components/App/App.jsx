@@ -167,6 +167,11 @@ function App() {
     };
   }, [activeModal]);
 
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
+    setSavedArticles(saved);
+  }, []);
+
   return (
     <div className="app">
       <div className="page">
@@ -232,6 +237,7 @@ function App() {
         <RegisterSuccessModal
           isOpen={activeModal === "register-success"}
           onClose={closeActiveModal}
+          handleSignIn={handleSignIn}
         />
       </div>
     </div>

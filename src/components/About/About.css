@@ -39,10 +39,10 @@
   line-height: 24px;
 }
 
-.about__paragraph-seperator {
+/* .about__paragraph-seperator {
   display: block;
   height: 24px;
-}
+} */
 
 @media screen and (min-width: 769px) and (max-width: 900px) {
   .about__author-image {
@@ -52,6 +52,11 @@
     max-height: 232px; /* Optional: Limit the maximum size */
     border-radius: 50%; /* Ensure the image remains circular */
     object-fit: cover;
+  }
+
+  .about {
+    padding-left: 60px;
+    padding-right: 60px;
   }
 }
 
@@ -80,7 +85,14 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
+  .about__author-image {
+    max-width: 200px;
+    max-height: 200px;
+  }
+}
+
+@media screen and (max-width: 392px) {
   .about {
     flex-direction: column;
     padding: 32px 24px;
@@ -89,10 +101,13 @@
   .about__author-image {
     max-width: 272px;
     max-height: 272px;
-    padding-bottom: 24px;
   }
 
   .about__content {
     padding-left: 0px;
+  }
+
+  .about__header {
+    padding-top: 24px;
   }
 }

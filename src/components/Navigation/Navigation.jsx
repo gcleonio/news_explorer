@@ -14,7 +14,7 @@ const Navigation = ({
   const isSavedNewsPage = location.pathname === "/saved-news";
 
   return (
-    <nav className={`nav ${isSavedNewsPage ? "nav__saved-news" : ""}`}>
+    <nav className={`nav ${isSavedNewsPage ? "nav_saved-news" : ""}`}>
       <Link
         to="/"
         className={`nav__logo ${isSavedNewsPage ? "nav__logo_saved-news" : ""}`}
@@ -60,7 +60,13 @@ const Navigation = ({
           </div>
         )}
       </ul>
-      <button className="nav__menu-btn"></button>
+      {!isLoggedIn && isHomePage && (
+        <button className="nav__menu-btn" onClick={onSignInClick}></button>
+      )}
+      {isLoggedIn && isHomePage && <button className="nav__menu-btn"></button>}
+      {isLoggedIn && isSavedNewsPage && (
+        <button className="nav__menu-btn-saved-news"></button>
+      )}
     </nav>
   );
 };
