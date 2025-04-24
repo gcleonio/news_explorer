@@ -96,4 +96,8 @@
     margin: 0 auto;
     max-width: 288px;
   }
+
+  #facebook-icon {
+    margin-right: 16px;
+  }
 }

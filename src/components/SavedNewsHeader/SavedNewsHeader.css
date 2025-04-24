@@ -41,4 +41,9 @@
     max-width: 80%;
     padding: 40px calc(10%) 60px;
   }
+
+  .header__saved-news-title {
+    font-size: 30px;
+    line-height: 34px;
+  }
 }

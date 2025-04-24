@@ -35,6 +35,7 @@ const Footer = () => {
             href="https://www.facebook.com/"
             target="_blank"
             rel="noopener noreferrer"
+            id="facebook-icon"
           >
             <img src={facebookIcon} alt="facebook"></img>
           </a>
