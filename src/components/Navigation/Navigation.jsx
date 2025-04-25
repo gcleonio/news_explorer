@@ -1,7 +1,9 @@
 import { useLocation, Link } from "react-router-dom";
+import { useState } from "react";
 import "./Navigation.css";
 import logoutIcon from "../../assets/logout.png";
 import logoutIconHome from "../../assets/logout-homepage.png";
+import MobileMenu from "../MobileMenu/MobileMenu";
 
 const Navigation = ({
   onSignInClick,
@@ -12,6 +14,11 @@ const Navigation = ({
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const isSavedNewsPage = location.pathname === "/saved-news";
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <nav className={`nav ${isSavedNewsPage ? "nav_saved-news" : ""}`}>
@@ -63,10 +70,25 @@ const Navigation = ({
       {!isLoggedIn && isHomePage && (
         <button className="nav__menu-btn" onClick={onSignInClick}></button>
       )}
-      {isLoggedIn && isHomePage && <button className="nav__menu-btn"></button>}
-      {isLoggedIn && isSavedNewsPage && (
-        <button className="nav__menu-btn-saved-news"></button>
+      {isLoggedIn && isHomePage && (
+        <button className="nav__menu-btn" onClick={toggleMobileMenu}></button>
       )}
+      {isLoggedIn && isSavedNewsPage && (
+        <button
+          className="nav__menu-btn-saved-news"
+          onClick={toggleMobileMenu}
+        ></button>
+      )}
+      <MobileMenu
+        onSignInClick={onSignInClick}
+        isLoggedIn={isLoggedIn}
+        currentUser={currentUser}
+        handleLogout={handleLogout}
+        isMobileMenuOpen={isMobileMenuOpen}
+        toggleMobileMenu={toggleMobileMenu}
+        isHomePage={isHomePage}
+        isSavedNewsPage={isSavedNewsPage}
+      />
     </nav>
   );
 };
