@@ -34,7 +34,11 @@ const Main = ({
       )}
       {hasSearched && error && (
         <div className="main__response-error">
-          <img src={notFoundImage} className="main__response-error-image" />
+          <img
+            src={notFoundImage}
+            className="main__response-error-image"
+            alt="response error image"
+          />
           <h2 className="main__response-error-heading">
             Sorry, something when wrong during the request.
           </h2>
