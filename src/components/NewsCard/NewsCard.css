@@ -227,7 +227,7 @@
 }
 
 .card__source {
-  font-family: "Roboto-Slab", sans-serif;
+  font-family: "Roboto Slab", sans-serif;
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 0.4px;
@@ -272,12 +272,11 @@
   }
 
   .card-list {
-    padding-left: 5%;
-    padding-right: 5%;
-
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    padding-left: 8%;
+    padding-right: 8%;
   }
 }
 

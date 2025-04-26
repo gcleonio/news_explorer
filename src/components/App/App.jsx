@@ -151,6 +151,10 @@ function App() {
     setActiveModal("register");
   };
 
+  const handleRegisterSuccessModal = () => {
+    setActiveModal("register-success");
+  };
+
   useEffect(() => {
     if (!activeModal) return;
 
@@ -233,6 +237,7 @@ function App() {
           onSignInClick={handleLoginModal}
           onClose={closeActiveModal}
           handleSignUp={handleSignUp}
+          handleRegisterSuccessModal={handleRegisterSuccessModal}
         />
         <RegisterSuccessModal
           isOpen={activeModal === "register-success"}

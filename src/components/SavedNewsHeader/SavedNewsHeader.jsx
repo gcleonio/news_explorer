@@ -29,7 +29,10 @@ const SavedNewsHeader = ({
           articles
         </h1>
         <p className="header__saved-news-keywords">
-          By keywords: {formattedKeywords}
+          By keywords:{" "}
+          <span className="header__saved-news-keywords-bold">
+            {formattedKeywords}
+          </span>
         </p>
       </div>
     </header>

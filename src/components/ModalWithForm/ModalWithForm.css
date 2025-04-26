@@ -46,10 +46,30 @@
   top: -40px;
   right: -40px;
   border: none;
+  cursor: pointer;
 }
 
 .modal__form {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+@media screen and (max-width: 526px) {
+  .modal__close {
+    /* position: absolute; */
+    height: 35px;
+    width: 35px;
+    top: -39px;
+    right: 7px;
+    background-size: contain;
+  }
+
+  .modal__content {
+    margin-top: 56px;
+  }
+
+  .modal {
+    align-items: flex-start;
+  }
 }
