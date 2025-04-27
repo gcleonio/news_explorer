@@ -42,7 +42,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  max-width: 300px;
+  min-width: 320px;
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.663);
@@ -123,8 +123,25 @@
   border: none;
 }
 
-@media screen and (max-width: 400px) {
+.mobile-menu__signin-btn {
+  color: black;
+  background: #f9f9f9;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  border-radius: 100px;
+  width: 80%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 30px;
+  align-self: center;
+}
+
+/* @media screen and (max-width: 400px) {
   .mobile-menu_open {
     max-width: 72%;
   }
-}
+} */
