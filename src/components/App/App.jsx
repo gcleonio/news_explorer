@@ -14,7 +14,6 @@ import SavedNewsMain from "../SavedNewsMain/SavedNewsMain";
 import { signUp, signIn, checkToken } from "../../utils/auth";
 import { getArticles, saveArticles } from "../../utils/api";
 import { getNews } from "../../utils/newsApi";
-// import { Outlet } from "react-router-dom";
 
 function App() {
   const [articlesToShow, setArticlesToShow] = useState(0);
@@ -24,7 +23,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
   const [newsArticleResults, setNewsArticleResults] = useState([]);
-  // const [visibleArticles, setVisibleArticles] = useState(0);
   const [hasSearched, setHasSearched] = useState(false);
   const [error, setError] = useState(null);
 
@@ -97,14 +95,6 @@ function App() {
       console.error("Error saving article:", err);
     }
   };
-
-  // const handleSaveArticle = ({ _id, isSaved, article }) => {
-  //   if (isSaved) {
-  //     setSavedArticles((prev) => [...prev, article]);
-  //   } else {
-  //     setSavedArticles((prev) => prev.filter((item) => item?._id !== _id));
-  //   }
-  // };
 
   const handleSearch = async (keyword) => {
     setIsLoading(true);

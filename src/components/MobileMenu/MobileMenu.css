@@ -48,7 +48,7 @@
   background-color: rgba(0, 0, 0, 0.663);
   display: flex;
   flex-direction: column;
-  transition: left 0.8s ease; /* Smooth slide-in effect */
+  transition: left 0.8s ease;
   z-index: 1000;
   align-items: start;
   display: flex;
@@ -110,8 +110,6 @@
   width: 30px;
   background-image: url(../../assets/close.png);
   background-color: transparent;
-  /* top: -40px;
-  right: -40px; */
   border: none;
   z-index: 1001;
   cursor: pointer;
@@ -139,9 +137,3 @@
   margin-top: 30px;
   align-self: center;
 }
-
-/* @media screen and (max-width: 400px) {
-  .mobile-menu_open {
-    max-width: 72%;
-  }
-} */

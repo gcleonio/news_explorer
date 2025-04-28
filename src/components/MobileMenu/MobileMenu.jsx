@@ -70,7 +70,7 @@ const MobileMenu = ({
         </button>
       ) : (
         <button className="mobile-menu__signin-btn" onClick={onSignInClick}>
-          Sign In
+          Sign in
         </button>
       )}
     </div>

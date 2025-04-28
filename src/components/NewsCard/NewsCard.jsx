@@ -14,7 +14,6 @@ const NewsCard = ({
 }) => {
   const location = useLocation();
   const isSavedNewsPage = location.pathname === "/saved-news";
-  // const [marked, setIsMarked] = useState(false);
   const [markedCards, setMarkedCards] = useState({});
 
   const articlesToRender = isSavedNewsPage
@@ -44,10 +43,6 @@ const NewsCard = ({
     handleSaveArticle(updateArticle);
   };
 
-  // const handleRemove = () => {
-  //   handleRemoveArticle(_id);
-  // };
-
   return (
     <ul
       className={`card-list ${
@@ -61,8 +56,8 @@ const NewsCard = ({
             alt="card image"
             className="card__image"
             onError={(e) => {
-              e.target.onerror = null; // prevents looping
-              e.target.src = defaultImage; // fallback to default image
+              e.target.onerror = null;
+              e.target.src = defaultImage;
             }}
           />
           {!isLoggedIn && location.pathname === "/" && (

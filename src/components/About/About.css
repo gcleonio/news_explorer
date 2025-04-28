@@ -9,8 +9,6 @@
   display: flex;
   padding: 80px 90px 80px 104px;
   background-color: #ffffff;
-  /* flex-wrap: wrap; */
-  /* margin-bottom: 61px; */
 }
 
 .about__content {
@@ -18,12 +16,10 @@
   width: 100%;
   padding-left: 56px;
   text-align: left;
-  /* flex-grow: 1; */
   height: auto;
 }
 
 .about__header {
-  /* height: 46px; */
   height: auto;
   font-weight: 400;
   font-size: 40px;
@@ -32,25 +28,19 @@
 }
 
 .about__description {
-  /* height: 120px; */
   height: auto;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
 }
 
-/* .about__paragraph-seperator {
-  display: block;
-  height: 24px;
-} */
-
 @media screen and (min-width: 769px) and (max-width: 900px) {
   .about__author-image {
-    width: 25vw; /* Set width as a percentage of the viewport width */
-    height: 25vw; /* Match height to width to maintain a circle */
-    max-width: 232px; /* Optional: Limit the maximum size */
-    max-height: 232px; /* Optional: Limit the maximum size */
-    border-radius: 50%; /* Ensure the image remains circular */
+    width: 25vw;
+    height: 25vw;
+    max-width: 232px;
+    max-height: 232px;
+    border-radius: 50%;
     object-fit: cover;
   }
 
@@ -64,10 +54,6 @@
   .about__author-image {
     max-width: 232px;
     max-height: 232px;
-    /* width: 30vw;
-    height: 30vh;
-    border-radius: 50%;
-    object-fit: cover; */
   }
 
   .about {

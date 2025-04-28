@@ -50,7 +50,6 @@ const Main = ({
       )}
       <NewsCard
         articlesToShow={articlesToShow}
-        // articles={articles}
         newsArticleResults={newsArticleResults}
         handleSaveArticle={handleSaveArticle}
         isLoggedIn={isLoggedIn}

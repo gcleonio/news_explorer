@@ -67,12 +67,6 @@ const Navigation = ({
           </div>
         )}
       </ul>
-      {/* {!isLoggedIn && isHomePage && (
-        <button className="nav__menu-btn" onClick={onSignInClick}></button>
-      )}
-      {isLoggedIn && isHomePage && (
-        <button className="nav__menu-btn" onClick={toggleMobileMenu}></button>
-      )} */}
       {isHomePage && (
         <button className="nav__menu-btn" onClick={toggleMobileMenu}></button>
       )}

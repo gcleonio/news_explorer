@@ -57,7 +57,6 @@
 
 @media screen and (max-width: 526px) {
   .modal__close {
-    /* position: absolute; */
     height: 35px;
     width: 35px;
     top: -39px;

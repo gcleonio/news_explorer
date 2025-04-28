@@ -75,7 +75,6 @@
 @media screen and (max-width: 500px) {
   .footer {
     flex-direction: column-reverse;
-    /* align-items: center; */
     margin: 22px 16px;
   }
 
