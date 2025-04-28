@@ -1,0 +1,311 @@
+.card {
+  background-color: white;
+  max-width: 400px;
+  width: 100%;
+  max-height: 576px;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 170px;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0 104px 60px;
+}
+
+.card-list--hidden {
+  display: none;
+}
+
+.card__image {
+  height: 272px;
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.card__button {
+  width: 30px;
+  height: 30px;
+  background-image: url(../../assets/bookmark.png);
+  border-radius: 8px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  cursor: pointer;
+  background-color: white;
+}
+
+.card__button-loggedin {
+  width: 30px;
+  height: 30px;
+  background-image: url(../../assets/bookmark.png);
+  border-radius: 8px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  cursor: pointer;
+  background-color: white;
+}
+
+.card__button-marked {
+  width: 30px;
+  height: 30px;
+  background-image: url(../../assets/bookmark-marked.png);
+  border-radius: 8px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  cursor: pointer;
+  background-color: white;
+  background-size: 40%;
+}
+
+.card__button-loggedin:hover {
+  background-image: url(../../assets/bookmark-hover.png);
+}
+
+.card__button-trash {
+  width: 30px;
+  height: 30px;
+  background-image: url(../../assets/trash.png);
+  border-radius: 8px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  cursor: pointer;
+  background-color: white;
+}
+
+.card__button-trash:hover {
+  background-image: url(../../assets/trash-hover.png);
+}
+
+.card__button-remove-text {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 8px 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -209%;
+  z-index: 10;
+  display: none;
+}
+
+.card__button-trash:hover .card__button-remove-text {
+  display: block;
+}
+
+.card__button:hover .card__button-hover-text {
+  display: flex;
+}
+
+.card__button-hover-text {
+  position: absolute;
+  width: 140px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  z-index: 1;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  left: -500%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.card__keyword {
+  position: absolute;
+  border-radius: 10px;
+  z-index: 1;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  line-height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #ffffff;
+  top: 12px;
+  left: 12px;
+  max-width: 120px;
+  font-size: 14px;
+  padding: 8px 20px;
+}
+
+.card__content {
+  text-align: left;
+  padding: 0 24px 24px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+}
+
+.card__pub-date {
+  max-width: 149px;
+  height: 24px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding-top: 8px;
+  padding-bottom: 12px;
+}
+
+.card__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  max-height: 60px;
+  max-width: 352px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  margin: 0;
+}
+
+.card__description {
+  max-width: 352px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding-bottom: 18px;
+  padding-top: 16px;
+}
+
+.card__source {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.4px;
+  color: #b6bcbf;
+  height: 20px;
+  text-transform: uppercase;
+  margin: 0;
+  padding-top: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .card__button {
+    width: 24px;
+    height: 24px;
+    top: 8px;
+    right: 8px;
+  }
+
+  .card__title {
+    font-size: 24px;
+  }
+
+  .card__source {
+    font-size: 16px;
+  }
+
+  .card {
+    max-width: 288px;
+    max-height: 440px;
+    min-width: 170px;
+  }
+
+  .card__content {
+    padding: 0 16px 16x;
+  }
+
+  .card__description {
+    -webkit-line-clamp: 4;
+  }
+
+  .card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .card__title {
+    font-size: 22px;
+  }
+
+  .card__description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 10px;
+  }
+
+  .card__image {
+    height: 196px;
+  }
+
+  .card__pub-date {
+    padding-top: 8px;
+    padding-bottom: 10px;
+  }
+
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px;
+  }
+}

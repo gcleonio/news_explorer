@@ -1,0 +1,133 @@
+.main__header {
+  max-width: 712px;
+  width: 100%;
+  height: 46px;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  font-family: "Roboto Slab", sans-serif;
+  text-align: left;
+  margin: 0px;
+  padding-bottom: 80px;
+  padding-left: 104px;
+  box-sizing: border-box;
+}
+
+.main {
+  background: #f5f6f7;
+  padding-top: 80px;
+}
+
+.main__more-button {
+  border-radius: 80px;
+  width: 288px;
+  height: 64px;
+  color: black;
+  background-color: #e8e8e8;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  border: none;
+  margin: 0px auto 80px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.main__more-button:hover {
+  background-color: #d1d2d6;
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main__noresult {
+  padding-bottom: 80px;
+}
+
+.main__noresult-image {
+  height: 82.5px;
+  width: 82.5px;
+}
+
+.main__noresult-heading {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.main__noresult-text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  word-wrap: break-word;
+  margin: 0 auto;
+}
+
+.main__response-error {
+}
+
+.main__response-error-image {
+  height: 82.5px;
+  width: 82.5px;
+}
+
+.main__response-error-heading {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.main__response-error-text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  word-wrap: break-word;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    padding-top: 40px;
+  }
+
+  .main__header {
+    font-size: 30px;
+    padding-bottom: 58px;
+  }
+
+  .main__more-button {
+    width: 240px;
+    height: 56px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main__header {
+    padding-left: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .main__header {
+    padding-left: 16px;
+  }
+
+  .main__more-button {
+    margin-bottom: 24px;
+    background-color: white;
+    color: black;
+    margin-top: 16px;
+  }
+}
