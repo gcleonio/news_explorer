@@ -1,6 +1,6 @@
 # News Explorer App 🌍
 
-**Frontend Demo:** [News Explorer](https://gcleonio.github.io/news_explorer/)
+**Frontend Demo:** [News Explorer](https://newsexplorerproject.jumpingcrab.com)
 
 ## **Overview**
 
