@@ -1,10 +1,10 @@
 import { baseUrl } from "./constants";
 
-function checkServerResponse(res) {
+export function checkServerResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
-export const signUp = async ({ email, password, name }) => {
+export const signUp = ({ email, password, name }) => {
   // return new Promise((resolve, reject) => {
   //   setTimeout(() => {
   //     resolve({ message: "User successfully registered!" });
@@ -19,7 +19,7 @@ export const signUp = async ({ email, password, name }) => {
   }).then(checkServerResponse);
 };
 
-export const signIn = async () => {
+export const signIn = () => {
   // return new Promise((resolve, reject) => {
   //   setTimeout(() => {
   //     resolve({ token: "fake-jwt-token" });
@@ -34,7 +34,7 @@ export const signIn = async () => {
   }).then(checkServerResponse);
 };
 
-export const checkToken = async (token) => {
+export const checkToken = (token) => {
   // return new Promise((resolve, reject) => {
   //   setTimeout(() => {
   //     resolve({
