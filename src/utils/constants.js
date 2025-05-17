@@ -1,3 +1,8 @@
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.newsexplorerproject.jumpingcrab.com"
+    : "http://localhost:3002";
+
 export const articles = [
   {
     source: {
