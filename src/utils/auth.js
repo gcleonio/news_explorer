@@ -19,7 +19,7 @@ export const signUp = ({ email, password, name }) => {
   }).then(checkServerResponse);
 };
 
-export const signIn = () => {
+export const signIn = ({ email, password }) => {
   // return new Promise((resolve, reject) => {
   //   setTimeout(() => {
   //     resolve({ token: "fake-jwt-token" });
