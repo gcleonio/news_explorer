@@ -195,6 +195,7 @@ function App() {
                     error={error}
                     handleSaveArticle={handleSaveArticle}
                     isLoggedIn={isLoggedIn}
+                    handleRegisterModal={handleRegisterModal}
                   />
                 </>
               }

@@ -11,6 +11,7 @@ const NewsCard = ({
   isLoggedIn,
   handleRemoveArticle,
   savedArticles = [],
+  handleRegisterModal,
 }) => {
   const location = useLocation();
   const isSavedNewsPage = location.pathname === "/saved-news";
@@ -61,7 +62,11 @@ const NewsCard = ({
             }}
           />
           {!isLoggedIn && location.pathname === "/" && (
-            <button type="button" className="card__button">
+            <button
+              type="button"
+              className="card__button"
+              onClick={handleRegisterModal}
+            >
               <span className="card__button-hover-text">
                 Sign in to save articles
               </span>
