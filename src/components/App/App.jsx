@@ -239,7 +239,7 @@ function App() {
           <RegisterSuccessModal
             isOpen={activeModal === "register-success"}
             onClose={closeActiveModal}
-            handleSignIn={handleSignIn}
+            onSignInClick={handleLoginModal}
           />
         </div>
       </div>
