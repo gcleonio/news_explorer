@@ -1,17 +1,21 @@
 import "./MobileMenu.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import logoutIcon from "../../assets/logout.png";
 
 const MobileMenu = ({
   onSignInClick,
-  isLoggedIn,
-  currentUser,
+  // isLoggedIn,
+  // currentUser,
   handleLogout,
   isMobileMenuOpen,
   toggleMobileMenu,
   isHomePage,
   isSavedNewsPage,
 }) => {
+  const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
+
   return (
     <div
       className={`mobile-menu ${isMobileMenuOpen ? "mobile-menu_open" : ""}`}

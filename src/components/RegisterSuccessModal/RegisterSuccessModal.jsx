@@ -1,7 +1,7 @@
 import "./RegisterSuccessModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const RegisterSuccessModal = ({ isOpen, onClose, handleSignIn }) => {
+const RegisterSuccessModal = ({ isOpen, onClose, onSignInClick }) => {
   return (
     <ModalWithForm
       title="Registration successfully completed!"
@@ -11,7 +11,7 @@ const RegisterSuccessModal = ({ isOpen, onClose, handleSignIn }) => {
       <button
         type="button"
         className="modal__button-login modal__button-register-success"
-        onClick={handleSignIn}
+        onClick={onSignInClick}
       >
         Sign in
       </button>

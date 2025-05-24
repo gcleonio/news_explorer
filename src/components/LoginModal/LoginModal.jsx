@@ -1,7 +1,6 @@
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
-import { matchRoutes } from "react-router-dom";
 
 const LoginModal = ({ isOpen, onSignUpClick, onClose, handleSignIn }) => {
   const [email, setEmail] = useState("");
@@ -26,7 +25,7 @@ const LoginModal = ({ isOpen, onSignUpClick, onClose, handleSignIn }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSignIn(email, password);
+    handleSignIn({ email, password });
     onClose();
   };
 

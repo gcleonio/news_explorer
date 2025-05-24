@@ -37,3 +37,7 @@ npm install
 #Run locally
 npm run dev
 ```
+
+### Backend:
+
+https://github.com/gcleonio/news_explorer-backend
