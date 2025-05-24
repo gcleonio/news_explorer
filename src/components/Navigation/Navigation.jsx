@@ -1,5 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./Navigation.css";
 import logoutIcon from "../../assets/logout.png";
 import logoutIconHome from "../../assets/logout-homepage.png";
@@ -7,8 +8,8 @@ import MobileMenu from "../MobileMenu/MobileMenu";
 
 const Navigation = ({
   onSignInClick,
-  isLoggedIn,
-  currentUser,
+  // isLoggedIn,
+  // currentUser,
   handleLogout,
 }) => {
   const location = useLocation();
@@ -19,6 +20,9 @@ const Navigation = ({
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
+  console.log("currentUser", currentUser, typeof currentUser);
 
   return (
     <nav className={`nav ${isSavedNewsPage ? "nav_saved-news" : ""}`}>
@@ -78,8 +82,8 @@ const Navigation = ({
       )}
       <MobileMenu
         onSignInClick={onSignInClick}
-        isLoggedIn={isLoggedIn}
-        currentUser={currentUser}
+        // isLoggedIn={isLoggedIn}
+        // currentUser={currentUser}
         handleLogout={handleLogout}
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={toggleMobileMenu}

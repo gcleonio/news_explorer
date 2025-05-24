@@ -32,6 +32,16 @@ function App() {
     console.log("Current User:", currentUser);
   }, [currentUser]);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      handleCheckToken();
+    } else {
+      setIsLoggedIn(false);
+      setCurrentUser(null);
+    }
+  }, []);
+
   const handleSignIn = async (email, password) => {
     try {
       const response = await signIn(email, password);
