@@ -25,7 +25,7 @@ const SavedNewsHeader = ({
       <div className="header__saved-news-container">
         <p className="header__saved-news-topline">Saved articles</p>
         <h1 className="header__saved-news-title">
-          {currentUser || "User"}, you have {savedArticles.length} saved
+          {currentUser?.name || "User"}, you have {savedArticles.length} saved
           articles
         </h1>
         <p className="header__saved-news-keywords">

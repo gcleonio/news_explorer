@@ -22,6 +22,7 @@ const Navigation = ({
   };
 
   const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
+  console.log("isLoggedIn in Navigation", isLoggedIn);
   console.log("currentUser", currentUser, typeof currentUser);
 
   return (
@@ -61,7 +62,7 @@ const Navigation = ({
                 isHomePage && isLoggedIn ? "nav__link_logout-btn_home" : ""
               }`}
             >
-              {currentUser || "User"}
+              {currentUser?.name || "User"}
               <img
                 src={isLoggedIn && isHomePage ? logoutIconHome : logoutIcon}
                 alt="Logout Icon"

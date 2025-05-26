@@ -63,15 +63,17 @@ function App() {
   };
 
   const handleCheckToken = async () => {
+    console.log("handleCheckToken called");
     try {
       const token = localStorage.getItem("token");
       if (!token) return;
 
       const response = await checkToken(token);
-      if (response.data) {
+      console.log("checkToken response:", response);
+      if (response) {
         setIsLoggedIn(true);
-        const { username, email, _id } = response.data;
-        setCurrentUser({ username, email, _id });
+        const { name, email, _id } = response;
+        setCurrentUser({ name, email, _id });
         fetchArticles();
       }
     } catch (err) {

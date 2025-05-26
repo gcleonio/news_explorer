@@ -65,7 +65,7 @@ const MobileMenu = ({
       )}
       {isLoggedIn ? (
         <button className="mobile-menu__logout-btn" onClick={handleLogout}>
-          {currentUser || "User"}
+          {currentUser?.name || "User"}
           <img
             src={logoutIcon}
             alt="Logout Icon"
