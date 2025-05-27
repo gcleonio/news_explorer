@@ -22,6 +22,7 @@ const getArticles = () => {
 
 const saveArticles = ({ article }) => {
   const token = localStorage.getItem("token");
+  console.log("article being saved:", article);
   return fetch(`${baseUrl}/articles`, {
     method: "POST",
     headers: {

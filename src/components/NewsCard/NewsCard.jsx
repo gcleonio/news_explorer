@@ -39,6 +39,7 @@ const NewsCard = ({
       description: article.description,
       publishedAt: article.publishedAt,
       source: { name: article.source.name },
+      url: article.url,
     };
 
     handleSaveArticle(updateArticle);
