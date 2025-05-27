@@ -9,7 +9,8 @@ const getArticles = () => {
   //     resolve(savedArticles);
   //   }, 500);
   // });
-  const token = localStorage.getItem("jwt");
+  const token = localStorage.getItem("token");
+  console.log("JWT token being sent:", token);
   return fetch(`${baseUrl}/articles`, {
     method: "GET",
     headers: {
@@ -20,7 +21,7 @@ const getArticles = () => {
 };
 
 const saveArticles = ({ article }) => {
-  const token = localStorage.getItem("jwt");
+  const token = localStorage.getItem("token");
   return fetch(`${baseUrl}/articles`, {
     method: "POST",
     headers: {
@@ -40,7 +41,7 @@ const saveArticles = ({ article }) => {
 };
 
 const removeSavedArticle = (selectedArticle) => {
-  const token = localStorage.getItem("jwt");
+  const token = localStorage.getItem("token");
   return fetch(`${baseUrl}/articles/${selectedArticle._id}`, {
     method: "DELETE",
     headers: {
