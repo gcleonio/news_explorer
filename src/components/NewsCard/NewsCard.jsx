@@ -17,9 +17,15 @@ const NewsCard = ({
   const isSavedNewsPage = location.pathname === "/saved-news";
   const [markedCards, setMarkedCards] = useState({});
 
-  const articlesToRender = isSavedNewsPage
-    ? savedArticles
-    : newsArticleResults.slice(0, articlesToShow);
+  const articlesToRender = Array.isArray(
+    isSavedNewsPage
+      ? savedArticles
+      : newsArticleResults.slice(0, articlesToShow)
+  )
+    ? isSavedNewsPage
+      ? savedArticles
+      : newsArticleResults.slice(0, articlesToShow)
+    : [];
 
   const handlePrepareSaveArticle = (article) => {
     if (!isLoggedIn) return;
@@ -51,68 +57,70 @@ const NewsCard = ({
         articlesToRender.length === 0 ? "card-list--hidden" : ""
       }`}
     >
-      {articlesToRender.map((article, index) => (
-        <li className="card" key={index}>
-          <img
-            src={article?.urlToImage || defaultImage}
-            alt="card image"
-            className="card__image"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = defaultImage;
-            }}
-          />
-          {!isLoggedIn && location.pathname === "/" && (
-            <button
-              type="button"
-              className="card__button"
-              onClick={handleRegisterModal}
-            >
-              <span className="card__button-hover-text">
-                Sign in to save articles
-              </span>
-            </button>
-          )}
-          {isLoggedIn && location.pathname === "/" && (
-            <button
-              type="button"
-              className={
-                markedCards[article._id]
-                  ? "card__button-marked"
-                  : "card__button-loggedin"
-              }
-              onClick={() => handlePrepareSaveArticle(article)}
-            ></button>
-          )}
-          {isLoggedIn && location.pathname === "/saved-news" && (
-            <>
-              <span className="card__keyword">{article.keyword}</span>
+      {(Array.isArray(articlesToRender) ? articlesToRender : [])?.map(
+        (article, index) => (
+          <li className="card" key={index}>
+            <img
+              src={article?.urlToImage || defaultImage}
+              alt="card image"
+              className="card__image"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = defaultImage;
+              }}
+            />
+            {!isLoggedIn && location.pathname === "/" && (
               <button
                 type="button"
-                className="card__button-trash"
-                onClick={() => {
-                  console.log("Removing article with _id", article?._id);
-                  handleRemoveArticle(article?._id);
-                }}
+                className="card__button"
+                onClick={handleRegisterModal}
               >
-                <span className="card__button-remove-text">Delete</span>
+                <span className="card__button-hover-text">
+                  Sign in to save articles
+                </span>
               </button>
-            </>
-          )}
-          <div className="card__content">
-            <p className="card__pub-date">
-              {new Date(article?.publishedAt).toLocaleDateString("en-US", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </p>
-            <h3 className="card__title">{article?.title}</h3>
-            <p className="card__description">{article?.description}</p>
-            <p className="card__source">{article?.source?.name}</p>
-          </div>
-        </li>
-      ))}
+            )}
+            {isLoggedIn && location.pathname === "/" && (
+              <button
+                type="button"
+                className={
+                  markedCards[article._id]
+                    ? "card__button-marked"
+                    : "card__button-loggedin"
+                }
+                onClick={() => handlePrepareSaveArticle(article)}
+              ></button>
+            )}
+            {isLoggedIn && location.pathname === "/saved-news" && (
+              <>
+                <span className="card__keyword">{article.keyword}</span>
+                <button
+                  type="button"
+                  className="card__button-trash"
+                  onClick={() => {
+                    console.log("Removing article with _id", article?._id);
+                    handleRemoveArticle(article?._id);
+                  }}
+                >
+                  <span className="card__button-remove-text">Delete</span>
+                </button>
+              </>
+            )}
+            <div className="card__content">
+              <p className="card__pub-date">
+                {new Date(article?.publishedAt).toLocaleDateString("en-US", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+              <h3 className="card__title">{article?.title}</h3>
+              <p className="card__description">{article?.description}</p>
+              <p className="card__source">{article?.source?.name}</p>
+            </div>
+          </li>
+        )
+      )}
     </ul>
 
     // <li className="card">

@@ -83,7 +83,7 @@ function App() {
 
   const fetchArticles = async () => {
     const articles = await getArticles();
-    setSavedArticles(articles);
+    setSavedArticles(Array.isArray(articles) ? articles : [articles]);
   };
 
   const handleSaveArticle = async (article) => {
@@ -93,7 +93,9 @@ function App() {
         savedArticles,
       });
 
-      setSavedArticles(updatedArticles);
+      setSavedArticles(
+        Array.isArray(updatedArticles) ? updatedArticles : [updatedArticles]
+      );
       localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
     } catch (err) {
       console.error("Error saving article:", err);
@@ -167,7 +169,7 @@ function App() {
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-    setSavedArticles(saved);
+    setSavedArticles(Array.isArray(saved) ? saved : [saved]);
   }, []);
 
   useEffect(() => {

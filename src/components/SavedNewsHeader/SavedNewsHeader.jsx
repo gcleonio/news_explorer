@@ -4,11 +4,15 @@ import Navigation from "../Navigation/Navigation";
 const SavedNewsHeader = ({
   isLoggedIn,
   currentUser,
-  savedArticles,
+  savedArticles = [],
   handleLogout,
 }) => {
   const keywords = [
-    ...new Set(savedArticles.map((article) => article.keyword)),
+    ...new Set(
+      (Array.isArray(savedArticles) ? savedArticles : [])?.map(
+        (article) => article.keyword
+      )
+    ),
   ]; // Remove duplicates
   const formattedKeywords =
     keywords.length > 3
