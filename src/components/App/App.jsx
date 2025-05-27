@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -88,15 +88,9 @@ function App() {
 
   const handleSaveArticle = async (article) => {
     try {
-      const updatedArticles = await saveArticles({
-        article,
-        savedArticles,
-      });
+      await saveArticles({ article, savedArticles });
 
-      setSavedArticles(
-        Array.isArray(updatedArticles) ? updatedArticles : [updatedArticles]
-      );
-      localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
+      await fetchArticles();
     } catch (err) {
       console.error("Error saving article:", err);
     }
@@ -181,6 +175,14 @@ function App() {
       setCurrentUser(null);
     }
   }, []);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/saved-news") {
+      fetchArticles();
+    }
+  }, [location.pathname]);
 
   return (
     <CurrentUserContext.Provider
