@@ -33,9 +33,14 @@ const RegisterModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSignUp({ email, password, name: username });
-    onClose();
-    handleRegisterSuccessModal();
+    handleSignUp({ email, password, name: username })
+      .then(() => {
+        onClose();
+        handleRegisterSuccessModal();
+      })
+      .catch((err) => {
+        console.error("Registration failed:", err);
+      });
   };
 
   return (

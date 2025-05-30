@@ -22,8 +22,8 @@ const SavedNewsHeader = ({
   return (
     <header className="header header_type_saved-news">
       <Navigation
-        isLoggedIn={isLoggedIn}
-        currentUser={currentUser}
+        // isLoggedIn={isLoggedIn}
+        // currentUser={currentUser}
         handleLogout={handleLogout}
       />
       <div className="header__saved-news-container">

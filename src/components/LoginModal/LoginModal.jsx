@@ -25,8 +25,13 @@ const LoginModal = ({ isOpen, onSignUpClick, onClose, handleSignIn }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSignIn({ email, password });
-    onClose();
+    handleSignIn({ email, password })
+      .then(() => {
+        onClose();
+      })
+      .catch((err) => {
+        console.error("Login failed:", err);
+      });
   };
 
   return (
