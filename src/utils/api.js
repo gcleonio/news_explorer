@@ -41,9 +41,9 @@ const saveArticles = ({ article }) => {
   }).then(checkServerResponse);
 };
 
-const removeSavedArticle = (selectedArticle) => {
+const removeSavedArticle = (articleId) => {
   const token = localStorage.getItem("token");
-  return fetch(`${baseUrl}/articles/${selectedArticle._id}`, {
+  return fetch(`${baseUrl}/articles/${articleId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

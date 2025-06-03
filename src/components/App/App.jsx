@@ -12,7 +12,7 @@ import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNewsMain from "../SavedNewsMain/SavedNewsMain";
 import { signUp, signIn, checkToken } from "../../utils/auth";
-import { getArticles, saveArticles } from "../../utils/api";
+import { getArticles, saveArticles, removeSavedArticle } from "../../utils/api";
 import { getNews } from "../../utils/newsApi";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -93,6 +93,15 @@ function App() {
       await fetchArticles();
     } catch (err) {
       console.error("Error saving article:", err);
+    }
+  };
+
+  const handleRemoveArticle = async (articleId) => {
+    try {
+      await removeSavedArticle(articleId);
+      await fetchArticles();
+    } catch (err) {
+      console.error("Error removing article:", err);
     }
   };
 
@@ -233,6 +242,7 @@ function App() {
                       savedArticles={savedArticles}
                       handleSaveArticle={handleSaveArticle}
                       isLoggedIn={isLoggedIn}
+                      handleRemoveArticle={handleRemoveArticle}
                     />
                   </>
                 </ProtectedRoute>

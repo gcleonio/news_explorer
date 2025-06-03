@@ -8,20 +8,21 @@ const SavedNewsMain = ({
   savedArticles = [],
   handleSaveArticle,
   isLoggedIn,
+  handleRemoveArticle,
 }) => {
-  const handleRemoveArticle = (_id) => {
-    if (!_id) {
-      console.error("Error: _id is undefined or null");
-      return;
-    }
+  // const handleRemoveArticle = (_id) => {
+  //   if (!_id) {
+  //     console.error("Error: _id is undefined or null");
+  //     return;
+  //   }
 
-    console.log("Removing article with _id:", _id);
+  //   console.log("Removing article with _id:", _id);
 
-    handleSaveArticle({
-      _id,
-      isSaved: false,
-    });
-  };
+  //   handleSaveArticle({
+  //     _id,
+  //     isSaved: false,
+  //   });
+  // };
 
   console.log("SavedArticles:", savedArticles);
 
