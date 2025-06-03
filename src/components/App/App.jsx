@@ -227,6 +227,8 @@ function App() {
                     handleSaveArticle={handleSaveArticle}
                     isLoggedIn={isLoggedIn}
                     handleRegisterModal={handleRegisterModal}
+                    handleRemoveArticle={handleRemoveArticle}
+                    savedArticles={savedArticles}
                   />
                 </>
               }

@@ -16,6 +16,8 @@ const Main = ({
   handleSaveArticle,
   isLoggedIn,
   handleRegisterModal,
+  handleRemoveArticle,
+  savedArticles = [],
 }) => {
   return (
     <main className={`${hasSearched ? "main" : ""}`}>
@@ -55,6 +57,9 @@ const Main = ({
         handleSaveArticle={handleSaveArticle}
         isLoggedIn={isLoggedIn}
         handleRegisterModal={handleRegisterModal}
+        handleRemoveArticle={handleRemoveArticle}
+        savedArticles={savedArticles}
+        // isSaved={savedArticles.some((saved) => saved.link === article.url)}
       />
       {articlesToShow < newsArticleResults.length && (
         <button className="main__more-button" onClick={handleShowMore}>

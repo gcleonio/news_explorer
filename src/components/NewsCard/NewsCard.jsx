@@ -67,6 +67,20 @@ const NewsCard = ({
     };
   }
 
+  // console.log("article in NewsCards.jsx", article);
+  // const isSaved = savedArticles.some((saved) => saved.link === article.url);
+  // const savedArticle = savedArticles.find(
+  //   (saved) => saved.link === article.url
+  // );
+
+  // const handleIconClick = () => {
+  //   if (isSaved && savedArticle) {
+  //     handleRemoveArticle(savedArticle._id);
+  //   } else {
+  //     handlePrepareSaveArticle(normalized);
+  //   }
+  // };
+
   return (
     <ul
       className={`card-list ${
@@ -76,6 +90,21 @@ const NewsCard = ({
       {(Array.isArray(articlesToRender) ? articlesToRender : [])?.map(
         (article, index) => {
           const normalized = normalizeArticle(article);
+          const isSaved = savedArticles.some(
+            (saved) => saved.link === normalized.url
+          );
+          const savedArticle = savedArticles.find(
+            (saved) => saved.link === normalized.url
+          );
+
+          const handleIconClick = () => {
+            if (isSaved && savedArticle) {
+              handleRemoveArticle(savedArticle._id);
+            } else {
+              handlePrepareSaveArticle(normalized);
+            }
+          };
+
           return (
             <li className="card" key={normalized._id || index}>
               <img
@@ -106,7 +135,8 @@ const NewsCard = ({
                       ? "card__button-marked"
                       : "card__button-loggedin"
                   }
-                  onClick={() => handlePrepareSaveArticle(normalized)}
+                  // onClick={() => handlePrepareSaveArticle(normalized)}
+                  onClick={handleIconClick}
                 ></button>
               )}
               {isLoggedIn && location.pathname === "/saved-news" && (
