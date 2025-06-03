@@ -88,8 +88,14 @@ function App() {
 
   const handleSaveArticle = async (article) => {
     try {
-      await saveArticles({ article, savedArticles });
+      const alreadySaved = savedArticles.some(
+        (saved) => saved.link === article.url
+      );
+      if (alreadySaved) {
+        return;
+      }
 
+      await saveArticles({ article, savedArticles });
       await fetchArticles();
     } catch (err) {
       console.error("Error saving article:", err);
