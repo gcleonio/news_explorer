@@ -236,7 +236,7 @@ function App() {
             <Route
               path="/saved-news"
               element={
-                <ProtectedRoute>
+                <ProtectedRoute onUnauthorized={handleLoginModal}>
                   <>
                     <SavedNewsHeader
                       isLoggedIn={isLoggedIn}
