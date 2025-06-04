@@ -15,7 +15,6 @@ const NewsCard = ({
 }) => {
   const location = useLocation();
   const isSavedNewsPage = location.pathname === "/saved-news";
-  const [markedCards, setMarkedCards] = useState({});
 
   const articlesToRender = Array.isArray(
     isSavedNewsPage
@@ -30,15 +29,8 @@ const NewsCard = ({
   const handlePrepareSaveArticle = (article) => {
     if (!isLoggedIn) return;
 
-    const updatedMarked = !markedCards[article._id];
-    setMarkedCards((prev) => ({
-      ...prev,
-      [article._id]: updatedMarked,
-    }));
-
     const updateArticle = {
       _id: article._id,
-      isSaved: updatedMarked,
       title: article.title,
       urlToImage: article.urlToImage,
       keyword: article.keyword,
@@ -66,20 +58,6 @@ const NewsCard = ({
           : article.source || { name: "" },
     };
   }
-
-  // console.log("article in NewsCards.jsx", article);
-  // const isSaved = savedArticles.some((saved) => saved.link === article.url);
-  // const savedArticle = savedArticles.find(
-  //   (saved) => saved.link === article.url
-  // );
-
-  // const handleIconClick = () => {
-  //   if (isSaved && savedArticle) {
-  //     handleRemoveArticle(savedArticle._id);
-  //   } else {
-  //     handlePrepareSaveArticle(normalized);
-  //   }
-  // };
 
   return (
     <ul
@@ -131,11 +109,8 @@ const NewsCard = ({
                 <button
                   type="button"
                   className={
-                    markedCards[normalized._id]
-                      ? "card__button-marked"
-                      : "card__button-loggedin"
+                    isSaved ? "card__button-marked" : "card__button-loggedin"
                   }
-                  // onClick={() => handlePrepareSaveArticle(normalized)}
                   onClick={handleIconClick}
                 ></button>
               )}
