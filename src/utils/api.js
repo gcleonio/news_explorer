@@ -10,7 +10,6 @@ const getArticles = () => {
   //   }, 500);
   // });
   const token = localStorage.getItem("token");
-  console.log("JWT token being sent:", token);
   return fetch(`${baseUrl}/articles`, {
     method: "GET",
     headers: {

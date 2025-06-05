@@ -4,8 +4,6 @@ import NewsCard from "../NewsCard/NewsCard";
 import Preloader from "../Preloader/Preloader";
 import notFoundImage from "../../assets/not-found.png";
 
-// import { articles } from "../../utils/constants";
-
 const Main = ({
   articlesToShow,
   handleShowMore,
@@ -59,7 +57,6 @@ const Main = ({
         handleRegisterModal={handleRegisterModal}
         handleRemoveArticle={handleRemoveArticle}
         savedArticles={savedArticles}
-        // isSaved={savedArticles.some((saved) => saved.link === article.url)}
       />
       {articlesToShow < newsArticleResults.length && (
         <button className="main__more-button" onClick={handleShowMore}>

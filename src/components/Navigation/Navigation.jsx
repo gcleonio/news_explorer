@@ -6,12 +6,7 @@ import logoutIcon from "../../assets/logout.png";
 import logoutIconHome from "../../assets/logout-homepage.png";
 import MobileMenu from "../MobileMenu/MobileMenu";
 
-const Navigation = ({
-  onSignInClick,
-  // isLoggedIn,
-  // currentUser,
-  handleLogout,
-}) => {
+const Navigation = ({ onSignInClick, handleLogout }) => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const isSavedNewsPage = location.pathname === "/saved-news";
@@ -83,8 +78,6 @@ const Navigation = ({
       )}
       <MobileMenu
         onSignInClick={onSignInClick}
-        // isLoggedIn={isLoggedIn}
-        // currentUser={currentUser}
         handleLogout={handleLogout}
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={toggleMobileMenu}

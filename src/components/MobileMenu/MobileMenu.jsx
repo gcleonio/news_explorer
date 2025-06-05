@@ -6,8 +6,6 @@ import logoutIcon from "../../assets/logout.png";
 
 const MobileMenu = ({
   onSignInClick,
-  // isLoggedIn,
-  // currentUser,
   handleLogout,
   isMobileMenuOpen,
   toggleMobileMenu,

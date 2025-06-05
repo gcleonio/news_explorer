@@ -1,7 +1,5 @@
-// import { articles } from "../../utils/constants";
 import "./NewsCard.css";
 import defaultImage from "../../assets/default-image.png";
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const NewsCard = ({
