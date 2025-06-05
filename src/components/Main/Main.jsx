@@ -4,8 +4,6 @@ import NewsCard from "../NewsCard/NewsCard";
 import Preloader from "../Preloader/Preloader";
 import notFoundImage from "../../assets/not-found.png";
 
-// import { articles } from "../../utils/constants";
-
 const Main = ({
   articlesToShow,
   handleShowMore,
@@ -15,6 +13,9 @@ const Main = ({
   error,
   handleSaveArticle,
   isLoggedIn,
+  handleRegisterModal,
+  handleRemoveArticle,
+  savedArticles = [],
 }) => {
   return (
     <main className={`${hasSearched ? "main" : ""}`}>
@@ -53,6 +54,9 @@ const Main = ({
         newsArticleResults={newsArticleResults}
         handleSaveArticle={handleSaveArticle}
         isLoggedIn={isLoggedIn}
+        handleRegisterModal={handleRegisterModal}
+        handleRemoveArticle={handleRemoveArticle}
+        savedArticles={savedArticles}
       />
       {articlesToShow < newsArticleResults.length && (
         <button className="main__more-button" onClick={handleShowMore}>

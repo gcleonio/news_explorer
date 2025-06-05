@@ -1,33 +1,47 @@
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
-import { matchRoutes } from "react-router-dom";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 const LoginModal = ({ isOpen, onSignUpClick, onClose, handleSignIn }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
-  const handleEmailChange = (e) => {
-    console.log(e.target.value);
-    setEmail(e.target.value);
-  };
+  const { values, handleChange, errors, isValid, setValues, resetForm } =
+    useFormAndValidation();
 
-  const handlePasswordChange = (e) => {
-    console.log(e.target.value);
-    setPassword(e.target.value);
-  };
+  // const handleEmailChange = (e) => {
+  //   console.log(e.target.value);
+  //   setEmail(e.target.value);
+  // };
+
+  // const handlePasswordChange = (e) => {
+  //   console.log(e.target.value);
+  //   setPassword(e.target.value);
+  // };
+
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     setEmail("");
+  //     setPassword("");
+  //   }
+  // }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
-      setEmail("");
-      setPassword("");
+      resetForm();
     }
-  }, [isOpen]);
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSignIn(email, password);
-    onClose();
+    handleSignIn({ email: values.email, password: values.password })
+      .then(() => {
+        onClose();
+      })
+      .catch((err) => {
+        console.error("Login failed:", err);
+      });
   };
 
   return (
@@ -41,14 +55,17 @@ const LoginModal = ({ isOpen, onSignUpClick, onClose, handleSignIn }) => {
         Email
         <input
           type="email"
+          minLength="5"
+          maxLength="50"
           className="modal__input"
           id="email-login"
           name="email"
           placeholder="Enter email"
-          value={email}
+          value={values.email || ""}
           required
-          onChange={handleEmailChange}
+          onChange={handleChange}
         />
+        {errors.email && <span className="modal__error">{errors.email}</span>}
       </label>
       <label className="modal__label">
         Password
@@ -56,16 +73,23 @@ const LoginModal = ({ isOpen, onSignUpClick, onClose, handleSignIn }) => {
           type="password"
           className="modal__input"
           id="password-login"
+          name="password"
+          minLength="8"
+          maxLength="30"
           placeholder="Enter password"
-          value={password}
+          value={values.password || ""}
           required
-          onChange={handlePasswordChange}
+          onChange={handleChange}
         />
+        {errors.password && (
+          <span className="modal__error">{errors.password}</span>
+        )}
       </label>
       <div className="modal__button-div">
         <button
           type="submit"
           className="modal__button-login modal__button-submit"
+          disabled={!isValid}
         >
           Sign in
         </button>

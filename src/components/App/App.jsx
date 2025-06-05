@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -12,8 +12,10 @@ import RegisterSuccessModal from "../RegisterSuccessModal/RegisterSuccessModal";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNewsMain from "../SavedNewsMain/SavedNewsMain";
 import { signUp, signIn, checkToken } from "../../utils/auth";
-import { getArticles, saveArticles } from "../../utils/api";
+import { getArticles, saveArticles, removeSavedArticle } from "../../utils/api";
 import { getNews } from "../../utils/newsApi";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
   const [articlesToShow, setArticlesToShow] = useState(0);
@@ -25,6 +27,7 @@ function App() {
   const [newsArticleResults, setNewsArticleResults] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [error, setError] = useState(null);
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   useEffect(() => {
     console.log("Current User:", currentUser);
@@ -61,38 +64,53 @@ function App() {
   };
 
   const handleCheckToken = async () => {
+    console.log("handleCheckToken called");
     try {
       const token = localStorage.getItem("token");
       if (!token) return;
 
       const response = await checkToken(token);
-      if (response.data) {
+      console.log("checkToken response:", response);
+      if (response) {
         setIsLoggedIn(true);
-        const { username, email, _id } = response.data;
-        setCurrentUser({ username, email, _id });
+        const { name, email, _id } = response;
+        setCurrentUser({ name, email, _id });
         fetchArticles();
       }
     } catch (err) {
+      setIsLoggedIn(false);
+      setCurrentUser(null);
       console.error("Error checking token:", err);
     }
   };
 
   const fetchArticles = async () => {
     const articles = await getArticles();
-    setSavedArticles(articles);
+    setSavedArticles(Array.isArray(articles) ? articles : [articles]);
   };
 
   const handleSaveArticle = async (article) => {
     try {
-      const updatedArticles = await saveArticles({
-        article,
-        savedArticles,
-      });
+      const alreadySaved = savedArticles.some(
+        (saved) => saved.link === article.url
+      );
+      if (alreadySaved) {
+        return;
+      }
 
-      setSavedArticles(updatedArticles);
-      localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
+      await saveArticles({ article, savedArticles });
+      await fetchArticles();
     } catch (err) {
       console.error("Error saving article:", err);
+    }
+  };
+
+  const handleRemoveArticle = async (articleId) => {
+    try {
+      await removeSavedArticle(articleId);
+      await fetchArticles();
+    } catch (err) {
+      console.error("Error removing article:", err);
     }
   };
 
@@ -163,79 +181,114 @@ function App() {
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
-    setSavedArticles(saved);
+    setSavedArticles(Array.isArray(saved) ? saved : [saved]);
   }, []);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      handleCheckToken().finally(() => setIsAuthChecked(true));
+    } else {
+      setIsLoggedIn(false);
+      setCurrentUser(null);
+      setIsAuthChecked(true);
+    }
+  }, []);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/saved-news") {
+      fetchArticles();
+    }
+  }, [location.pathname]);
+
   return (
-    <div className="app">
-      <div className="page">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Header
-                  onSignInClick={handleLoginModal}
-                  isLoggedIn={isLoggedIn}
-                  handleSearch={handleSearch}
-                  currentUser={currentUser}
-                  handleLogout={handleLogout}
-                />
-                <Main
-                  articlesToShow={articlesToShow}
-                  isLoading={isLoading}
-                  handleShowMore={handleShowMore}
-                  newsArticleResults={newsArticleResults}
-                  hasSearched={hasSearched}
-                  error={error}
-                  handleSaveArticle={handleSaveArticle}
-                  isLoggedIn={isLoggedIn}
-                />
-              </>
-            }
-          ></Route>
-          <Route
-            path="/saved-news"
-            element={
-              <>
-                <SavedNewsHeader
-                  isLoggedIn={isLoggedIn}
-                  savedArticles={savedArticles}
-                  currentUser={currentUser}
-                  handleLogout={handleLogout}
-                />
-                <SavedNewsMain
-                  articlesToShow={articlesToShow}
-                  newsArticleResults={newsArticleResults}
-                  savedArticles={savedArticles}
-                  handleSaveArticle={handleSaveArticle}
-                  isLoggedIn={isLoggedIn}
-                />
-              </>
-            }
-          ></Route>
-        </Routes>
-        <Footer />
-        <LoginModal
-          isOpen={activeModal === "login"}
-          onSignUpClick={handleRegisterModal}
-          onClose={closeActiveModal}
-          handleSignIn={handleSignIn}
-        />
-        <RegisterModal
-          isOpen={activeModal === "register"}
-          onSignInClick={handleLoginModal}
-          onClose={closeActiveModal}
-          handleSignUp={handleSignUp}
-          handleRegisterSuccessModal={handleRegisterSuccessModal}
-        />
-        <RegisterSuccessModal
-          isOpen={activeModal === "register-success"}
-          onClose={closeActiveModal}
-          handleSignIn={handleSignIn}
-        />
+    <CurrentUserContext.Provider
+      value={{ currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn }}
+    >
+      <div className="app">
+        <div className="page">
+          {!isAuthChecked ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <Header
+                        onSignInClick={handleLoginModal}
+                        isLoggedIn={isLoggedIn}
+                        handleSearch={handleSearch}
+                        currentUser={currentUser}
+                        handleLogout={handleLogout}
+                      />
+                      <Main
+                        articlesToShow={articlesToShow}
+                        isLoading={isLoading}
+                        handleShowMore={handleShowMore}
+                        newsArticleResults={newsArticleResults}
+                        hasSearched={hasSearched}
+                        error={error}
+                        handleSaveArticle={handleSaveArticle}
+                        isLoggedIn={isLoggedIn}
+                        handleRegisterModal={handleRegisterModal}
+                        handleRemoveArticle={handleRemoveArticle}
+                        savedArticles={savedArticles}
+                      />
+                    </>
+                  }
+                ></Route>
+                <Route
+                  path="/saved-news"
+                  element={
+                    <ProtectedRoute onUnauthorized={handleLoginModal}>
+                      <>
+                        <SavedNewsHeader
+                          isLoggedIn={isLoggedIn}
+                          savedArticles={savedArticles}
+                          currentUser={currentUser}
+                          handleLogout={handleLogout}
+                        />
+                        <SavedNewsMain
+                          articlesToShow={articlesToShow}
+                          newsArticleResults={newsArticleResults}
+                          savedArticles={savedArticles}
+                          handleSaveArticle={handleSaveArticle}
+                          isLoggedIn={isLoggedIn}
+                          handleRemoveArticle={handleRemoveArticle}
+                        />
+                      </>
+                    </ProtectedRoute>
+                  }
+                ></Route>
+              </Routes>
+              <Footer />
+              <LoginModal
+                isOpen={activeModal === "login"}
+                onSignUpClick={handleRegisterModal}
+                onClose={closeActiveModal}
+                handleSignIn={handleSignIn}
+              />
+              <RegisterModal
+                isOpen={activeModal === "register"}
+                onSignInClick={handleLoginModal}
+                onClose={closeActiveModal}
+                handleSignUp={handleSignUp}
+                handleRegisterSuccessModal={handleRegisterSuccessModal}
+              />
+              <RegisterSuccessModal
+                isOpen={activeModal === "register-success"}
+                onClose={closeActiveModal}
+                onSignInClick={handleLoginModal}
+              />
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </CurrentUserContext.Provider>
   );
 }
 

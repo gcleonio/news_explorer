@@ -1,7 +1,5 @@
-// import { articles } from "../../utils/constants";
 import "./NewsCard.css";
 import defaultImage from "../../assets/default-image.png";
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const NewsCard = ({
@@ -11,37 +9,53 @@ const NewsCard = ({
   isLoggedIn,
   handleRemoveArticle,
   savedArticles = [],
+  handleRegisterModal,
 }) => {
   const location = useLocation();
   const isSavedNewsPage = location.pathname === "/saved-news";
-  const [markedCards, setMarkedCards] = useState({});
 
-  const articlesToRender = isSavedNewsPage
-    ? savedArticles
-    : newsArticleResults.slice(0, articlesToShow);
+  const articlesToRender = Array.isArray(
+    isSavedNewsPage
+      ? savedArticles
+      : newsArticleResults.slice(0, articlesToShow)
+  )
+    ? isSavedNewsPage
+      ? savedArticles
+      : newsArticleResults.slice(0, articlesToShow)
+    : [];
 
   const handlePrepareSaveArticle = (article) => {
     if (!isLoggedIn) return;
 
-    const updatedMarked = !markedCards[article._id];
-    setMarkedCards((prev) => ({
-      ...prev,
-      [article._id]: updatedMarked,
-    }));
-
     const updateArticle = {
       _id: article._id,
-      isSaved: updatedMarked,
       title: article.title,
       urlToImage: article.urlToImage,
       keyword: article.keyword,
       description: article.description,
       publishedAt: article.publishedAt,
       source: { name: article.source.name },
+      url: article.url,
     };
 
     handleSaveArticle(updateArticle);
   };
+
+  function normalizeArticle(article) {
+    return {
+      _id: article._id,
+      title: article.title,
+      description: article.description || article.text || "",
+      publishedAt: article.publishedAt || article.date || "",
+      urlToImage: article.urlToImage || article.image || defaultImage,
+      keyword: article.keyword,
+      url: article.url || article.link || "",
+      source:
+        typeof article.source === "string"
+          ? { name: article.source }
+          : article.source || { name: "" },
+    };
+  }
 
   return (
     <ul
@@ -49,64 +63,89 @@ const NewsCard = ({
         articlesToRender.length === 0 ? "card-list--hidden" : ""
       }`}
     >
-      {articlesToRender.map((article, index) => (
-        <li className="card" key={index}>
-          <img
-            src={article?.urlToImage || defaultImage}
-            alt="card image"
-            className="card__image"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = defaultImage;
-            }}
-          />
-          {!isLoggedIn && location.pathname === "/" && (
-            <button type="button" className="card__button">
-              <span className="card__button-hover-text">
-                Sign in to save articles
-              </span>
-            </button>
-          )}
-          {isLoggedIn && location.pathname === "/" && (
-            <button
-              type="button"
-              className={
-                markedCards[article._id]
-                  ? "card__button-marked"
-                  : "card__button-loggedin"
-              }
-              onClick={() => handlePrepareSaveArticle(article)}
-            ></button>
-          )}
-          {isLoggedIn && location.pathname === "/saved-news" && (
-            <>
-              <span className="card__keyword">{article.keyword}</span>
-              <button
-                type="button"
-                className="card__button-trash"
-                onClick={() => {
-                  console.log("Removing article with _id", article?._id);
-                  handleRemoveArticle(article?._id);
+      {(Array.isArray(articlesToRender) ? articlesToRender : [])?.map(
+        (article, index) => {
+          const normalized = normalizeArticle(article);
+          const isSaved = savedArticles.some(
+            (saved) => saved.link === normalized.url
+          );
+          const savedArticle = savedArticles.find(
+            (saved) => saved.link === normalized.url
+          );
+
+          const handleIconClick = () => {
+            if (isSaved && savedArticle) {
+              handleRemoveArticle(savedArticle._id);
+            } else {
+              handlePrepareSaveArticle(normalized);
+            }
+          };
+
+          return (
+            <li className="card" key={normalized._id || index}>
+              <img
+                src={normalized?.urlToImage || defaultImage}
+                alt="card image"
+                className="card__image"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = defaultImage;
                 }}
-              >
-                <span className="card__button-remove-text">Delete</span>
-              </button>
-            </>
-          )}
-          <div className="card__content">
-            <p className="card__pub-date">
-              {new Date(article?.publishedAt).toLocaleDateString("en-US", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </p>
-            <h3 className="card__title">{article?.title}</h3>
-            <p className="card__description">{article?.description}</p>
-            <p className="card__source">{article?.source?.name}</p>
-          </div>
-        </li>
-      ))}
+              />
+              {!isLoggedIn && location.pathname === "/" && (
+                <button
+                  type="button"
+                  className="card__button"
+                  onClick={handleRegisterModal}
+                >
+                  <span className="card__button-hover-text">
+                    Sign in to save articles
+                  </span>
+                </button>
+              )}
+              {isLoggedIn && location.pathname === "/" && (
+                <button
+                  type="button"
+                  className={
+                    isSaved ? "card__button-marked" : "card__button-loggedin"
+                  }
+                  onClick={handleIconClick}
+                ></button>
+              )}
+              {isLoggedIn && location.pathname === "/saved-news" && (
+                <>
+                  <span className="card__keyword">{normalized.keyword}</span>
+                  <button
+                    type="button"
+                    className="card__button-trash"
+                    onClick={() => {
+                      console.log("Removing article with _id", normalized?._id);
+                      handleRemoveArticle(normalized?._id);
+                    }}
+                  >
+                    <span className="card__button-remove-text">Delete</span>
+                  </button>
+                </>
+              )}
+              <div className="card__content">
+                <p className="card__pub-date">
+                  {new Date(normalized?.publishedAt).toLocaleDateString(
+                    "en-US",
+                    {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    }
+                  )}
+                </p>
+                <h3 className="card__title">{normalized?.title}</h3>
+                <p className="card__description">{normalized?.description}</p>
+                <p className="card__source">{normalized?.source?.name}</p>
+              </div>
+            </li>
+          );
+        }
+      )}
     </ul>
 
     // <li className="card">

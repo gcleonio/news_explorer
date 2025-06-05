@@ -14,8 +14,6 @@ const Header = ({
     <header className="header header_type_home">
       <Navigation
         onSignInClick={onSignInClick}
-        isLoggedIn={isLoggedIn}
-        currentUser={currentUser}
         handleLogout={handleLogout}
       />
       <div className="header__container">
